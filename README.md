@@ -1,4 +1,4 @@
-# Labb03
+# Labb03 - QuizQuest
 
 ### Godkänt
 
