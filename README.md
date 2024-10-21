@@ -1,6 +1,6 @@
 # Labb03
 
-### För godkänt
+### Godkänt
 
 Appen ska vara byggd med MVVM, och i huvudsak använda data binding och commands.
 
@@ -24,7 +24,7 @@ Det ska finnas ett helskärmsläge.
 
 
 
-### För väl godkänt
+### Väl godkänt
 
 Man ska kunna importera frågor från Open Trivia Database, via deras API.
 
