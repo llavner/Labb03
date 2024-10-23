@@ -7,6 +7,46 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2"
+                    HorizontalAlignment="Right">
             
+            <Button x:Name="packOptionBorder"
+                    Content="🛠️" Margin="3"
+                    Grid.Column="1" Grid.Row="0"
+                    Width="20"/>
+            <Button x:Name="addQuestionBorder"
+                    Content="+" Margin="3"
+                    Grid.Column="1" Grid.Row="0"
+                    Width="20"/>
+            <Button x:Name="removeQuestionBorder"
+                    Content="-" Margin="3"
+                    Grid.Column="1" Grid.Row="0"
+                    Width="20"/>
+            
+        </StackPanel>
+
+        <Border BorderBrush="Black" BorderThickness="1"
+                CornerRadius="3" Padding="5"
+                Grid.Column="1" Grid.Row="1">
+            
+            <TextBlock x:Name="configContent" Height="300"
+                       Grid.Row="1" Grid.Column="1"/>
+
+        </Border>
+
     </Grid>
+    
 </UserControl>
