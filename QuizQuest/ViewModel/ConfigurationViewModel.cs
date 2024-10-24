@@ -17,5 +17,7 @@ namespace QuizQuest.ViewModel
         
         }
 
+        public QuestionPackViewModel? ActivePack { get => mainWindowViewModel.ActivePack; }
+
     }
 }

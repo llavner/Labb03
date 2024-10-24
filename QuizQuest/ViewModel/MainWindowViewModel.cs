@@ -10,7 +10,7 @@ namespace QuizQuest.ViewModel
 {
     internal class MainWindowViewModel : ViewModelBase
     {
-        //Grunden för att hålla reda på alla olika questionpacks.
+        
         public ObservableCollection<QuestionPackViewModel>? Packs { get; set; }
 
         private QuestionPackViewModel? _activePack;
@@ -26,6 +26,7 @@ namespace QuizQuest.ViewModel
             { 
                 _activePack = value;
                 RaisedPropertyChanged();
+                ConfigurationViewModel.RaisedPropertyChanged("Active Pack");
             }
         }
 
