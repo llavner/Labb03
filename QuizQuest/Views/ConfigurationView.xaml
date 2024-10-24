@@ -2,51 +2,66 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:QuizQuest.Views"
+             DataContext="{Binding ConfigurationViewModel}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" d:Background="AliceBlue">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
-        </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2"
-                    HorizontalAlignment="Right">
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    VerticalAlignment="Center" Grid.Row="0">
+
             <Button x:Name="packOptionBorder"
-                    Content="🛠️" Margin="3"
-                    Grid.Column="1" Grid.Row="0"
-                    Width="20"/>
+                    Margin="1"
+                    Content="{fa:Icon sliders}"/>
+
+
             <Button x:Name="addQuestionBorder"
-                    Content="+" Margin="3"
-                    Grid.Column="1" Grid.Row="0"
-                    Width="20"/>
+                    Margin="1"
+                    Content="{fa:Icon plus}"/>
+
             <Button x:Name="removeQuestionBorder"
-                    Content="-" Margin="3"
-                    Grid.Column="1" Grid.Row="0"
-                    Width="20"/>
-            
+                    Margin="1"
+                    Content="{fa:Icon minus}"/>
         </StackPanel>
 
         <Border BorderBrush="Black" BorderThickness="1"
-                CornerRadius="3" Padding="5"
-                Grid.Column="1" Grid.Row="1">
-            
-            <TextBlock x:Name="configContent" Height="300"
-                       Grid.Row="1" Grid.Column="1"/>
+                CornerRadius="2" Grid.Row="1" Margin="2">
 
+            <TextBlock x:Name="questionContent" Height="auto"/>
         </Border>
 
+        <StackPanel Grid.Column="1" Grid.Row="1"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Width="300" Height="300"
+                    >
+            <Label Content="Question:" FontWeight="Bold"/>
+            <TextBox x:Name="newQuestion" Text="New Question"
+                     Height="80"/>
+            <Label Content="Question:" FontWeight="Bold"/>
+            <TextBox x:Name="correctAnswer"/>
+            <Label Content="First Incorrect Answer:" FontWeight="Bold"/>
+            <TextBox x:Name="wrongAnswer1"/>
+            <Label Content="Second Incorrect Answer:" FontWeight="Bold"/>
+            <TextBox x:Name="wrongAnswer2"/>
+            <Label Content="Third Incorrect Answer:" FontWeight="Bold"/>
+            <TextBox x:Name="wrongAnswer3"/>
+            
+        </StackPanel>
+
     </Grid>
-    
+
 </UserControl>

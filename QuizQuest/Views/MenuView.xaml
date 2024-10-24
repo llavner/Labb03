@@ -3,39 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:QuizQuest.Views"
+             xmlns:local="clr-namespace:QuizQuest.Views" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Menu>
+        <Menu Width="auto">
 
+        <MenuItem Header="_File">
 
-            <MenuItem Header="File">
-
-                <MenuItem Header="New Question Pack"/>
-                <MenuItem Header="Select Question Pack"/>
-                <MenuItem Header="Delete Question Pack"/>
-                <MenuItem Header="Import Questions"/>
-                <MenuItem Header="Exit"/>
+                <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"/> 
+                <MenuItem Header="Select Question Pack" Icon="{fa:Icon folderopen}"/>
+                <MenuItem Header="Delete Question Pack" Icon="{fa:Icon folderminus}"/>
+                <Separator/>
+                <MenuItem Header="Import Questions" Icon="{fa:Icon fileimport}"/>
+                <Separator/>
+                <MenuItem Header="E_xit" Icon="{fa:Icon dooropen}"/>
 
 
             </MenuItem>
 
 
-            <MenuItem Header="Edit">
+            <MenuItem Header="_Edit">
 
-                <MenuItem Header="Add Question"/>
-                <MenuItem Header="Remove Question"/>
-                <MenuItem Header="Pack Option"/>
+                <MenuItem Header="_Add Question" Icon="{fa:Icon plus}"/>
+                <MenuItem Header="_Remove Question" Icon="{fa:Icon minus}"/>
+                <MenuItem Header="_Pack Option" Icon="{fa:Icon sliders}"/>
 
             </MenuItem>
 
 
-            <MenuItem Header="View">
+            <MenuItem Header="_View">
                 
-                <MenuItem Header="Play"/>
-                <MenuItem Header="Edit"/>
-                <MenuItem Header="Fullscreem"/>
+                <MenuItem Header="_Play" Icon="{fa:Icon play}"/>
+                <MenuItem Header="_Edit" Icon="{fa:Icon gear}"/>
+                <Separator/>
+                <MenuItem Header="Fullscreen"/>
 
 
             </MenuItem>
