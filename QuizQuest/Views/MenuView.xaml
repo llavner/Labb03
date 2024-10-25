@@ -5,20 +5,25 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:QuizQuest.Views" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d"
-             d:DesignHeight="500" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800"
+             DataContext="{Binding MenubarViewModel}">
              
     <Grid>
         <Menu Width="auto">
 
         <MenuItem Header="_File">
 
-                <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"/> 
+                <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}" Command="{Binding CreateNewPackCommand}"/> 
                 <MenuItem Header="Select Question Pack" Icon="{fa:Icon folderopen}"/>
                 <MenuItem Header="Delete Question Pack" Icon="{fa:Icon folderminus}"/>
                 <Separator/>
                 <MenuItem Header="Import Questions" Icon="{fa:Icon fileimport}"/>
                 <Separator/>
-                <MenuItem Header="E_xit" Icon="{fa:Icon dooropen}"/>
+                <MenuItem Header="E_xit" Icon="{fa:Icon dooropen}"
+                          InputGestureText="Ctrl + x"
+                          Command="{Binding ExitProgramCommand}"/> 
+                          
+            
 
 
             </MenuItem>
@@ -28,7 +33,8 @@
 
                 <MenuItem Header="_Add Question" Icon="{fa:Icon plus}"/>
                 <MenuItem Header="_Remove Question" Icon="{fa:Icon minus}"/>
-                <MenuItem Header="_Pack Option" Icon="{fa:Icon sliders}"/>
+                <MenuItem Header="_Pack Option" Icon="{fa:Icon sliders}"
+                          Command="{Binding OpenPackOptionCommand}"/>
 
             </MenuItem>
 

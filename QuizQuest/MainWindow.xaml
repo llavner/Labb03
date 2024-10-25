@@ -7,23 +7,26 @@
         mc:Ignorable="d"
         MinHeight="400" MinWidth="700"
         Icon="pack://application:,,,/Assets/qq.ico"
-        Title="QuizQuest 1.0" Height="450" Width="800">
+        Title="QuizQuest 1.0" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        DataContext="{Binding MenubarViewModel}">
 
     <Window.InputBindings>
 
-    <KeyBinding Key="U" Modifiers="Ctrl" 
-                Command="{Binding PlayerViewModel.UpdateButtonCommand}"/>
+    <KeyBinding Key="X" Modifiers="Ctrl"
+                Command="{Binding ExitProgramCommand}"/>
         
     </Window.InputBindings>
+      
     <Grid>
 
         <local:MenuView Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
-        
-        <!--<local:ConfigurationView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>-->
 
-        <local:PlayerView Grid.Column="0" Grid.Row="0"
+        <local:ConfigurationView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <!--<local:PlayerView Grid.Column="0" Grid.Row="0"
                           Grid.ColumnSpan="2"
-                          Grid.RowSpan="2"/>
+                          Grid.RowSpan="2"/>-->
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace QuizQuest.ViewModel
@@ -26,9 +27,9 @@ namespace QuizQuest.ViewModel
             }
         }
 
-        public DelegateCommand UpdateButtonCommand { get; }
+        public DelegateCommand UpdateButtonCommand { get; } // 1
 
-        public PlayerViewModel(MainWindowViewModel mainWindowViewModel)
+        public PlayerViewModel(MainWindowViewModel mainWindowViewModel) 
         {
             this.mainWindowViewModel = mainWindowViewModel;
 
@@ -39,14 +40,15 @@ namespace QuizQuest.ViewModel
             timer.Tick += Timer_Tick;
             //timer.Start();
 
-            UpdateButtonCommand = new DelegateCommand(UpdateButton);
-            //AddQuestionCommand = new DelegateCommand(AddQuestion, CanAddQuestion); Exempel
+            UpdateButtonCommand = new DelegateCommand(UpdateButton); // 3
+            
 
         }
 
-        private void UpdateButton(object obj)
+        private void UpdateButton(object obj) //2
         {
-            TestData += "<";
+            //TestData += "<";
+            Application.Current.Shutdown();
         }
 
         private void Timer_Tick(object? sender, EventArgs e)

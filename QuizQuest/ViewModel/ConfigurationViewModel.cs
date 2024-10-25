@@ -9,15 +9,18 @@ namespace QuizQuest.ViewModel
     internal class ConfigurationViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? mainWindowViewModel;
+        public QuestionPackViewModel? ActivePack { get => mainWindowViewModel.ActivePack; }
 
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
 
             this.mainWindowViewModel = mainWindowViewModel;
+            
+            //AddQuestionCommand = new DelegateCommand(AddQuestion, CanAddQuestion); Exempel
         
+
         }
 
-        public QuestionPackViewModel? ActivePack { get => mainWindowViewModel.ActivePack; }
 
     }
 }

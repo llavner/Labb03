@@ -5,8 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizQuest.Dialogs"
         mc:Ignorable="d"
-        Title="PackOptionDialog" Height="450" Width="800">
+        WindowStartupLocation="CenterScreen"
+        Title="PackOptionDialog" Height="200" Width="250">
+    
     <Grid>
-        
+       
+        <StackPanel Orientation="Vertical" Margin="10,10,10,10" Grid.ColumnSpan="2">
+            <StackPanel.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </StackPanel.Resources>
+            
+            <Label Content="Pack Name:"/>
+            <TextBox x:Name="optionDialogName" Width="auto"/>
+
+            <Label Content="Difficulty:"/>
+            <ComboBox Text="Easy">
+                <ComboBoxItem Content="Easy"/>
+                <ComboBoxItem Content="Medium"/>
+                <ComboBoxItem Content="Hard"/>
+            </ComboBox>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Time Limit:"/>
+                <Label x:Name="optionDialogTimer" Content="5 Seconds"
+                       HorizontalAlignment="Right" FontWeight="Light"/>
+            </StackPanel>
+            <Slider x:Name="optionDialogSlider" Maximum="120"
+                    TickPlacement="BottomRight" TickFrequency="5"
+                    />
+        </StackPanel>
+
     </Grid>
 </Window>
