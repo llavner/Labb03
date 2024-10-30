@@ -7,9 +7,11 @@
              xmlns:vm="clr-namespace:QuizQuest.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" d:Background="AliceBlue">
-             
-             
 
+    <UserControl.DataContext>
+        <vm:MainWindowViewModel x:Name="mainWindowViewModel" />
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -26,19 +28,19 @@
             
             <Button x:Name="packOptionBorder"
                     Margin="1"
-                    Command=""
+                    Command="{Binding MenubarViewModel.OpenPackOptionCommand}"
                     Content="{fa:Icon sliders}"/>
 
 
             <Button x:Name="addQuestionBorder"
                     Margin="1"
-                    Command=""
+                    Command="{Binding ConfigurationViewModel.AddQuestionCommand}"
                     Content="{fa:Icon plus}"/>
 
             <Button x:Name="removeQuestionBorder"
                     Margin="1"
                     Content="{fa:Icon minus}"
-                    Command=""
+                    Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"
                     IsEnabled="False"/>
         </StackPanel>
 
@@ -47,13 +49,12 @@
 
             <ListBox x:Name="questionContent" Height="auto"
                      Padding="2"
-                     SelectedItem=""
-                     ItemsSource="{Binding}">
-
-                <StackPanel>
-                    <TextBlock Text="{Binding Query}"/>
-                </StackPanel>
+                     ItemsSource="{Binding ActivePack.Questions}">
+                     
+                     
             </ListBox>
+
+                
 
         </Border>
 
@@ -77,15 +78,15 @@
             
             <Label Content="First Incorrect Answer:" FontWeight="Bold"/>
             <TextBox x:Name="wrongAnswer1" Padding="2"
-                     Text=""/>
+                     Text="{Binding ActiveQuestion.IncorrectAnswers}"/>
             
             <Label Content="Second Incorrect Answer:" FontWeight="Bold"/>
             <TextBox x:Name="wrongAnswer2" Padding="2"
-                     Text=""/>
+                     Text="{Binding ActiveQuestion.IncorrectAnswers}"/>
             
             <Label Content="Third Incorrect Answer:" FontWeight="Bold"/>
             <TextBox x:Name="wrongAnswer3" Padding="2"
-                     Text=""/>
+                     Text="{Binding ActiveQuestion.IncorrectAnswers}"/>
             
         </StackPanel>
 

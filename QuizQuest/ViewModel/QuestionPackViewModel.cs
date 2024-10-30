@@ -16,7 +16,8 @@ namespace QuizQuest.ViewModel
 
         public ObservableCollection<Question> Questions { get; }
 
-        public DelegateCommand CreateCommand { get; }
+        public DelegateCommand AddQuestionPackCommand { get; }
+        public DelegateCommand RemoveQuestionPackCommand { get; }
         public DelegateCommand CancelCommand { get; }
 
         public string Name
@@ -54,25 +55,49 @@ namespace QuizQuest.ViewModel
             this._model = _model;
             this.Questions = new ObservableCollection<Question>(_model.Questions);
 
-            CreateCommand = new DelegateCommand(Create);
+            
+            
+            AddQuestionPackCommand = new DelegateCommand(AddQuestionPack);
+
+            RemoveQuestionPackCommand = new DelegateCommand(RemoveQuestionPack);
+
             CancelCommand = new DelegateCommand(Cancel);
+
+            
         }
 
-        private void Create(object obj)
+        private void AddQuestionPack(object obj) 
         {
-            //var pack = new QuestionPack(Name, Difficulty, TimeLimit);
-           
-
             if (obj is Window window)
+            {
+
+                var newQuestionPack = new QuestionPackViewModel(new QuestionPack(Name, Difficulty, TimeLimit));
+                
                 window.Close();
-            
+
+            }
+
+        }
+
+
+
+
+        private void RemoveQuestionPack(object obj)
+        {
+
+
+
         }
 
         private void Cancel(object obj)
         {
 
             if (obj is Window window)
+            {
+
                 window.Close();
+            }
+
 
         }
 

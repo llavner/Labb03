@@ -11,11 +11,13 @@ namespace QuizQuest.ViewModel
     internal class ConfigurationViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? mainWindowViewModel;
+        public DelegateCommand AddQuestionCommand { get; }
+        public DelegateCommand RemoveQuestionCommand { get; }
+        public QuestionPackViewModel? ActivePack => mainWindowViewModel.ActivePack;
 
-       /* public Question ActiveQuestion
+        /*public Question ActiveQuestion
         {
-            get => ActiveQuestion;
-
+            get { return ActiveQuestion; }
             set
             {
                 ActiveQuestion = value;
@@ -23,10 +25,6 @@ namespace QuizQuest.ViewModel
             }
 
         }*/
-
-        public DelegateCommand AddQuestionCommand { get; }
-        public DelegateCommand RemoveQuestionCommand { get; }
-        public QuestionPackViewModel? ActivePack { get => mainWindowViewModel.ActivePack; }
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
 
@@ -35,23 +33,18 @@ namespace QuizQuest.ViewModel
             AddQuestionCommand = new DelegateCommand(AddQuestion);
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
 
-            
-        
-            //ActivePack.Questions.Add(new Question("Hello", "A", "B", "C", "D"));
         }
             
-
-
         private void AddQuestion(object obj)
         {
 
-            //ActivePack.Questions.Add(new Question();
-            
+            ActivePack.Questions.Add(new Question("A","B","C","D","F"));
+
         }
 
         private void RemoveQuestion(object obj)
         {
-
+            //ActivePack.Questions.Remove();
 
         }
 

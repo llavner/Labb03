@@ -17,13 +17,7 @@ namespace QuizQuest.ViewModel
         public ObservableCollection<QuestionPackViewModel>? Packs { get; set; }
 
         private QuestionPackViewModel? _activePack;
-
-        public PlayerViewModel PlayerViewModel { get; }
-
-        public ConfigurationViewModel ConfigurationViewModel { get; }
-
-        public MenubarViewModel MenubarViewModel { get; }
-
+        public ConfigurationViewModel? ConfigurationViewModel { get; }
         public QuestionPackViewModel? ActivePack
         {
             get { return _activePack; }
@@ -34,20 +28,27 @@ namespace QuizQuest.ViewModel
                 ConfigurationViewModel.RaisedPropertyChanged(nameof(ActivePack));
             }
         }
+        public PlayerViewModel PlayerViewModel { get; }
+        public MenubarViewModel MenubarViewModel { get; }
+
 
         public MainWindowViewModel()
         {
-            
-            PlayerViewModel = new PlayerViewModel(this);
 
             ConfigurationViewModel = new ConfigurationViewModel(this);
 
+            ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack"));
+
             MenubarViewModel = new MenubarViewModel(this);
 
-            ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack"));
+            PlayerViewModel = new PlayerViewModel(this);
+            
 
             
 
+            
+
+            
         }
 
     }

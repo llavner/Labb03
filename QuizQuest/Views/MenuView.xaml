@@ -3,26 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:QuizQuest.Views" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:local="clr-namespace:QuizQuest.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:vm="clr-namespace:QuizQuest.ViewModel"
              mc:Ignorable="d"
-             d:DesignHeight="500" d:DesignWidth="800"
-             DataContext="{Binding MenubarViewModel}">
-             
+             d:DesignHeight="50" d:DesignWidth="500">
+
+    <UserControl.DataContext>
+        <vm:MainWindowViewModel x:Name="mainWindowViewModel" />
+    </UserControl.DataContext>
     <Grid>
         <Menu Width="auto">
 
         <MenuItem Header="_File">
 
-                <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}" Command="{Binding CreateNewPackCommand}"/> 
-                <MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}"/>
-                <MenuItem Header="Delete Question Pack" Icon="{fa:Icon folderminus}"/>
+                <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"
+                          Command="{Binding MenubarViewModel.CreateNewPackCommand}"/> 
+                <MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}"
+                          Command="{Binding}"/>
+                <MenuItem Header="_Delete Question Pack" Icon="{fa:Icon folderminus}"
+                          Command="{Binding }"/>
                 <Separator/>
                 <MenuItem Header="Import Questions" Icon="{fa:Icon fileimport}"
-                          Command="{Binding ImportCommand}"/>
+                          Command="{Binding MenubarViewModel.ImportCommand}"/>
                 <Separator/>
                 <MenuItem Header="E_xit" Icon="{fa:Icon dooropen}"
                           InputGestureText="Ctrl + x"
-                          Command="{Binding ExitProgramCommand}"/> 
+                          Command="{Binding MenubarViewModel.ExitProgramCommand}"/> 
                           
             
 
@@ -32,10 +39,14 @@
 
             <MenuItem Header="_Edit">
 
-                <MenuItem Header="_Add Question" Icon="{fa:Icon plus}"/>
-                <MenuItem Header="_Remove Question" Icon="{fa:Icon minus}"/>
-                <MenuItem Header="_Pack Option" Icon="{fa:Icon sliders}"
-                          Command="{Binding OpenPackOptionCommand}"/>
+                <MenuItem Header="_Add Question" Icon="{fa:Icon plus}"
+                          Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
+                
+                <MenuItem Header="_Remove Question" Icon="{fa:Icon minus}"
+                          Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
+                
+                <MenuItem Header="Pack _Option" Icon="{fa:Icon sliders}"
+                          Command="{Binding MenubarViewModel.OpenPackOptionCommand}"/>
 
             </MenuItem>
 
@@ -45,8 +56,8 @@
                 <MenuItem Header="_Play" Icon="{fa:Icon play}"/>
                 <MenuItem Header="_Edit" Icon="{fa:Icon gear}"/>
                 <Separator/>
-                <MenuItem Header="Fullscreen" Icon="{fa:Icon expand}"
-                          Command="{Binding GoFullScreenCommand}"/>
+                <MenuItem Header="_Fullscreen" Icon="{fa:Icon expand}"
+                          Command="{Binding MenubarViewModel.GoFullScreenCommand}"/>
 
 
             </MenuItem>
