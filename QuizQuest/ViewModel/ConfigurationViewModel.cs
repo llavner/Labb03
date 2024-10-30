@@ -15,12 +15,24 @@ namespace QuizQuest.ViewModel
         public DelegateCommand RemoveQuestionCommand { get; }
         public QuestionPackViewModel? ActivePack => mainWindowViewModel.ActivePack;
 
+        private Question _activeQuestion;
+        public Question ActiveQuestion
+        {
+            get { return _activeQuestion; } 
+            set
+            {
+                _activeQuestion = value;
+                RaisedPropertyChanged();
+                RemoveQuestionCommand.RaisedCanExecuteChanged();
+            }
+        }
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
 
             this.mainWindowViewModel = mainWindowViewModel;
             
             AddQuestionCommand = new DelegateCommand(AddQuestion);
+
             RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
 
         }
@@ -28,27 +40,36 @@ namespace QuizQuest.ViewModel
         private void AddQuestion(object obj)
         {
 
-            ActivePack.Questions.Add(new Question("A","B","C","D","F"));
+            ActivePack.Questions.Add(new Question("<New Question>","","","",""));
 
+            ActiveQuestion = ActivePack.Questions.Last();
         }
 
         private void RemoveQuestion(object obj)
         {
-            //ActivePack.Questions.Remove();
+            if (ActivePack?.Questions == null || ActiveQuestion == null)
+                return;
+
+            ActivePack.Questions.Remove(ActiveQuestion);
+
+            //ActiveQuestion = ActivePack.Questions.FirstOrDefault();
 
         }
+            
+
 
         private bool CanRemoveQuestion(object obj)
         {
-            if (ActivePack.Questions == null)
+            if (ActivePack?.Questions != null && ActiveQuestion != null)
             {
                 return false;
             }
             else
                 return true;
-
-
         }
+            
+
+
 
 
 

@@ -43,12 +43,6 @@ namespace QuizQuest.ViewModel
 
             PlayerViewModel = new PlayerViewModel(this);
             
-
-            
-
-            
-
-            
         }
 
     }

@@ -26,18 +26,18 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                     VerticalAlignment="Center" Grid.Row="0">
             
-            <Button x:Name="packOptionBorder"
+            <Button x:Name="packOption"
                     Margin="1"
                     Command="{Binding MenubarViewModel.OpenPackOptionCommand}"
                     Content="{fa:Icon sliders}"/>
 
 
-            <Button x:Name="addQuestionBorder"
+            <Button x:Name="addQuestion"
                     Margin="1"
                     Command="{Binding ConfigurationViewModel.AddQuestionCommand}"
                     Content="{fa:Icon plus}"/>
 
-            <Button x:Name="removeQuestionBorder"
+            <Button x:Name="removeQuestion"
                     Margin="1"
                     Content="{fa:Icon minus}"
                     Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"
@@ -49,44 +49,44 @@
 
             <ListBox x:Name="questionContent" Height="auto"
                      Padding="2"
-                     ItemsSource="{Binding ActivePack.Questions}">
+                     ItemsSource="{Binding ActivePack.Questions}"
+                     SelectedItem="{Binding ConfigurationViewModel.ActiveQuestion}">
                      
                      
             </ListBox>
 
+        </Border>
                 
 
-        </Border>
 
         <StackPanel Grid.Column="1" Grid.Row="1"
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch"
                     Width="300" Height="300"
-                    Visibility="Visible">
+                    Visibility="Hidden">
             
             <Label Content="Question:" FontWeight="Bold"/>
             <TextBox x:Name="newQuestion"
                      Height="80" Padding="2"
-                     Text=""
-                     />
+                     Text="{Binding ConfigurationViewModel.ActiveQuestion.Query}"/>
             
             <Label Content="Correct Answer:" FontWeight="Bold"/>
             <TextBox x:Name="correctAnswer"
                      Padding="2"
-                     Text=""/>
+                     Text="{Binding ConfigurationViewModel.ActiveQuestion.CorrectAnswer}"/>
                      
             
             <Label Content="First Incorrect Answer:" FontWeight="Bold"/>
             <TextBox x:Name="wrongAnswer1" Padding="2"
-                     Text="{Binding ActiveQuestion.IncorrectAnswers}"/>
+                     Text="{Binding ConfigurationViewModel.ActiveQuestion.IncorrectAnswers[0]}"/>
             
             <Label Content="Second Incorrect Answer:" FontWeight="Bold"/>
             <TextBox x:Name="wrongAnswer2" Padding="2"
-                     Text="{Binding ActiveQuestion.IncorrectAnswers}"/>
+                     Text="{Binding ConfigurationViewModel.ActiveQuestion.IncorrectAnswers[1]}"/>
             
             <Label Content="Third Incorrect Answer:" FontWeight="Bold"/>
             <TextBox x:Name="wrongAnswer3" Padding="2"
-                     Text="{Binding ActiveQuestion.IncorrectAnswers}"/>
+                     Text="{Binding ConfigurationViewModel.ActiveQuestion.IncorrectAnswers[2]}"/>
             
         </StackPanel>
 
