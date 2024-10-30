@@ -1,5 +1,6 @@
 ﻿using QuizQuest.Command;
 using QuizQuest.Model;
+using QuizQuest.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,8 +24,6 @@ namespace QuizQuest.ViewModel
 
         public MenubarViewModel MenubarViewModel { get; }
 
-        //public DelegateCommand ExitProgramCommand { get; }
-
         public QuestionPackViewModel? ActivePack
         {
             get { return _activePack; }
@@ -32,12 +31,13 @@ namespace QuizQuest.ViewModel
             { 
                 _activePack = value;
                 RaisedPropertyChanged();
-                ConfigurationViewModel.RaisedPropertyChanged("Active Pack");
+                ConfigurationViewModel.RaisedPropertyChanged(nameof(ActivePack));
             }
         }
 
         public MainWindowViewModel()
         {
+            
             PlayerViewModel = new PlayerViewModel(this);
 
             ConfigurationViewModel = new ConfigurationViewModel(this);
@@ -46,22 +46,9 @@ namespace QuizQuest.ViewModel
 
             ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack"));
 
-            //ExitProgramCommand = new DelegateCommand(ExitProgram);
-
-        }
-
-        /*public void ExitProgram(object obj)
-        {
-            var result = MessageBox.Show("Exit program?", "Exit", MessageBoxButton.YesNo);
-
-            if(result == MessageBoxResult.Yes)
-                Application.Current.Shutdown();
             
+
         }
-*/
-
-          
-
 
     }
 }

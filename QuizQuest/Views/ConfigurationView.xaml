@@ -3,12 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
-             xmlns:local="clr-namespace:QuizQuest.Views" xmlns:local1="clr-namespace:QuizQuest.ViewModel"
-             DataContext="{Binding ConfigurationViewModel}"
+             xmlns:local="clr-namespace:QuizQuest.Views"
+             xmlns:vm="clr-namespace:QuizQuest.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" d:Background="AliceBlue">
-    <Grid>
+             
+             
 
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
@@ -19,53 +21,71 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                     VerticalAlignment="Center" Grid.Row="0">
             
             <Button x:Name="packOptionBorder"
                     Margin="1"
-                    DataContext="{Binding MenubarViewModel}"
-                    Command="{Binding OpenPackOptionsCommand}"
+                    Command=""
                     Content="{fa:Icon sliders}"/>
 
 
             <Button x:Name="addQuestionBorder"
                     Margin="1"
+                    Command=""
                     Content="{fa:Icon plus}"/>
 
             <Button x:Name="removeQuestionBorder"
                     Margin="1"
-                    Content="{fa:Icon minus}"/>
+                    Content="{fa:Icon minus}"
+                    Command=""
+                    IsEnabled="False"/>
         </StackPanel>
 
         <Border BorderBrush="Black" BorderThickness="1"
                 CornerRadius="2" Grid.Row="1" Margin="2">
 
             <ListBox x:Name="questionContent" Height="auto"
-                     Padding="2"/>
+                     Padding="2"
+                     SelectedItem=""
+                     ItemsSource="{Binding}">
+
+                <StackPanel>
+                    <TextBlock Text="{Binding Query}"/>
+                </StackPanel>
+            </ListBox>
+
         </Border>
 
         <StackPanel Grid.Column="1" Grid.Row="1"
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch"
                     Width="300" Height="300"
-                    >
+                    Visibility="Visible">
+            
             <Label Content="Question:" FontWeight="Bold"/>
-            <TextBox x:Name="newQuestion" Text="New Question"
-                     Height="80" Padding="2"/>
+            <TextBox x:Name="newQuestion"
+                     Height="80" Padding="2"
+                     Text=""
+                     />
             
             <Label Content="Correct Answer:" FontWeight="Bold"/>
-            <TextBox x:Name="correctAnswer" Padding="2"/>
+            <TextBox x:Name="correctAnswer"
+                     Padding="2"
+                     Text=""/>
+                     
             
             <Label Content="First Incorrect Answer:" FontWeight="Bold"/>
-            <TextBox x:Name="wrongAnswer1" Padding="2"/>
+            <TextBox x:Name="wrongAnswer1" Padding="2"
+                     Text=""/>
             
             <Label Content="Second Incorrect Answer:" FontWeight="Bold"/>
-            <TextBox x:Name="wrongAnswer2" Padding="2"/>
+            <TextBox x:Name="wrongAnswer2" Padding="2"
+                     Text=""/>
             
             <Label Content="Third Incorrect Answer:" FontWeight="Bold"/>
-            <TextBox x:Name="wrongAnswer3" Padding="2"/>
+            <TextBox x:Name="wrongAnswer3" Padding="2"
+                     Text=""/>
             
         </StackPanel>
 

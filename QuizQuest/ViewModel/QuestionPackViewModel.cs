@@ -1,6 +1,8 @@
-﻿using QuizQuest.Model;
+﻿using QuizQuest.Command;
+using QuizQuest.Model;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Windows;
 
 namespace QuizQuest.ViewModel
 {
@@ -8,10 +10,14 @@ namespace QuizQuest.ViewModel
     {
 
         private readonly QuestionPack _model;
+        
 
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
         public ObservableCollection<Question> Questions { get; }
+
+        public DelegateCommand CreateCommand { get; }
+        public DelegateCommand CancelCommand { get; }
 
         public string Name
         {
@@ -47,6 +53,28 @@ namespace QuizQuest.ViewModel
         {
             this._model = _model;
             this.Questions = new ObservableCollection<Question>(_model.Questions);
+
+            CreateCommand = new DelegateCommand(Create);
+            CancelCommand = new DelegateCommand(Cancel);
         }
+
+        private void Create(object obj)
+        {
+            //var pack = new QuestionPack(Name, Difficulty, TimeLimit);
+           
+
+            if (obj is Window window)
+                window.Close();
+            
+        }
+
+        private void Cancel(object obj)
+        {
+
+            if (obj is Window window)
+                window.Close();
+
+        }
+
     }
 }

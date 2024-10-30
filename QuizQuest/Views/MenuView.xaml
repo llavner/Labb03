@@ -14,10 +14,11 @@
         <MenuItem Header="_File">
 
                 <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}" Command="{Binding CreateNewPackCommand}"/> 
-                <MenuItem Header="Select Question Pack" Icon="{fa:Icon folderopen}"/>
+                <MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}"/>
                 <MenuItem Header="Delete Question Pack" Icon="{fa:Icon folderminus}"/>
                 <Separator/>
-                <MenuItem Header="Import Questions" Icon="{fa:Icon fileimport}"/>
+                <MenuItem Header="Import Questions" Icon="{fa:Icon fileimport}"
+                          Command="{Binding ImportCommand}"/>
                 <Separator/>
                 <MenuItem Header="E_xit" Icon="{fa:Icon dooropen}"
                           InputGestureText="Ctrl + x"
@@ -44,7 +45,8 @@
                 <MenuItem Header="_Play" Icon="{fa:Icon play}"/>
                 <MenuItem Header="_Edit" Icon="{fa:Icon gear}"/>
                 <Separator/>
-                <MenuItem Header="Fullscreen" Icon="{fa:Icon expand}"/>
+                <MenuItem Header="Fullscreen" Icon="{fa:Icon expand}"
+                          Command="{Binding GoFullScreenCommand}"/>
 
 
             </MenuItem>
