@@ -15,16 +15,6 @@ namespace QuizQuest.ViewModel
         public DelegateCommand RemoveQuestionCommand { get; }
         public QuestionPackViewModel? ActivePack => mainWindowViewModel.ActivePack;
 
-        /*public Question ActiveQuestion
-        {
-            get { return ActiveQuestion; }
-            set
-            {
-                ActiveQuestion = value;
-                RaisedPropertyChanged();
-            }
-
-        }*/
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
 
