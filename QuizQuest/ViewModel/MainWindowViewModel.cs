@@ -25,7 +25,7 @@ namespace QuizQuest.ViewModel
             { 
                 _activePack = value;
                 RaisedPropertyChanged();
-                ConfigurationViewModel.RaisedPropertyChanged(nameof(ActivePack));
+                //ConfigurationViewModel.RaisedPropertyChanged(nameof(ActivePack));
             }
         }
         public PlayerViewModel PlayerViewModel { get; }
@@ -34,10 +34,10 @@ namespace QuizQuest.ViewModel
 
         public MainWindowViewModel()
         {
+            ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack"));
 
             ConfigurationViewModel = new ConfigurationViewModel(this);
 
-            ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack"));
 
             MenubarViewModel = new MenubarViewModel(this);
 

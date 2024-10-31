@@ -22,13 +22,14 @@
 
         <local:MenuView Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
 
-        <local:ConfigurationView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"/>
+        <local:ConfigurationView Grid.Column="0" Grid.Row="1" 
+                                 Grid.ColumnSpan="2" Visibility="Visible"/>
 
-        <!--<local:PlayerView Grid.Column="0" Grid.Row="0"
+        <local:PlayerView Grid.Column="0" Grid.Row="0"
                           Grid.ColumnSpan="2"
-                          Grid.RowSpan="2"/>-->
+                          Grid.RowSpan="2" Visibility="Hidden"/>
 
-        <Grid.RowDefinitions>
+            <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
          </Grid.RowDefinitions>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace QuizQuest.ViewModel
 {
@@ -33,14 +34,16 @@ namespace QuizQuest.ViewModel
             
             AddQuestionCommand = new DelegateCommand(AddQuestion);
 
-            RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
+            RemoveQuestionCommand = new DelegateCommand(RemoveQuestion);
+
+            
 
         }
             
         private void AddQuestion(object obj)
         {
 
-            ActivePack.Questions.Add(new Question("<New Question>","","","",""));
+            ActivePack?.Questions.Add(new Question("New Question", "", "", "", ""));
 
             ActiveQuestion = ActivePack.Questions.Last();
         }
@@ -48,25 +51,30 @@ namespace QuizQuest.ViewModel
         private void RemoveQuestion(object obj)
         {
             if (ActivePack?.Questions == null || ActiveQuestion == null)
+            {
+                
                 return;
-
-            ActivePack.Questions.Remove(ActiveQuestion);
-
-            //ActiveQuestion = ActivePack.Questions.FirstOrDefault();
-
+            }
+            ActivePack?.Questions.Remove(ActiveQuestion);
+            ActiveQuestion = ActivePack.Questions.FirstOrDefault();
         }
+
+            
+
+
             
 
 
         private bool CanRemoveQuestion(object obj)
         {
             if (ActivePack?.Questions != null && ActiveQuestion != null)
-            {
                 return false;
-            }
             else
                 return true;
         }
+            
+            
+            
             
 
 

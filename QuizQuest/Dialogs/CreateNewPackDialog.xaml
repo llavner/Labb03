@@ -48,7 +48,7 @@
                     Margin="10">
 
             <Button x:Name="createButton" Content="Create" 
-                    Margin="10" Padding="5" Command="{Binding ActivePack.CreateCommand}"
+                    Margin="10" Padding="5" Command="{Binding ActivePack.AddQuestionPackCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
             <Button x:Name="cancelButton" Content="Cancel" 
                     Margin="10" Padding="5" Command="{Binding ActivePack.CancelCommand}"

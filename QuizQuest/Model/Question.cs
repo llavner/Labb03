@@ -22,5 +22,12 @@ namespace QuizQuest.Model
 
         }
 
+        public override string ToString()
+        {
+            return $"{Query}";
+        }
+
+            
+
     }
 }

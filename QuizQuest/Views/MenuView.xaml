@@ -19,7 +19,7 @@
 
                 <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"
                           Command="{Binding MenubarViewModel.CreateNewPackCommand}"/> 
-                <MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}"
+                <MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}" 
                           Command="{Binding ActivePack.Name}"/>
                 <MenuItem Header="_Delete Question Pack" Icon="{fa:Icon folderminus}"
                           Command="{Binding }"/>

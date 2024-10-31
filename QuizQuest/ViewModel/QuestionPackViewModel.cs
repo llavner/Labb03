@@ -10,7 +10,7 @@ namespace QuizQuest.ViewModel
     {
 
         private readonly QuestionPack _model;
-        
+
 
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
 
@@ -50,34 +50,37 @@ namespace QuizQuest.ViewModel
             }
         }
 
-        public QuestionPackViewModel(QuestionPack _model)
+        public QuestionPackViewModel(QuestionPack model) //ändrade från _model
         {
-            this._model = _model;
-            this.Questions = new ObservableCollection<Question>(_model.Questions);
+            this._model = model;
+            this.Questions = new ObservableCollection<Question>(model.Questions);
 
             
-            
+
             AddQuestionPackCommand = new DelegateCommand(AddQuestionPack);
 
             RemoveQuestionPackCommand = new DelegateCommand(RemoveQuestionPack);
 
             CancelCommand = new DelegateCommand(Cancel);
 
-            
+             
         }
 
-        private void AddQuestionPack(object obj) 
+        private void AddQuestionPack(object obj)
         {
+            var newQuestionPack = new QuestionPackViewModel(new QuestionPack(Name, Difficulty, TimeLimit));
+
+            
+            
             if (obj is Window window)
             {
 
-                var newQuestionPack = new QuestionPackViewModel(new QuestionPack(Name, Difficulty, TimeLimit));
-                
                 window.Close();
 
             }
-
         }
+
+
 
 
 
