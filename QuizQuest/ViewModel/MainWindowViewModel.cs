@@ -25,11 +25,12 @@ namespace QuizQuest.ViewModel
             { 
                 _activePack = value;
                 RaisedPropertyChanged();
-                //ConfigurationViewModel.RaisedPropertyChanged(nameof(ActivePack));
+                RaisedPropertyChanged(nameof(ActivePack));
             }
         }
         public PlayerViewModel PlayerViewModel { get; }
         public MenubarViewModel MenubarViewModel { get; }
+        public DialogViewModel DialogViewModel { get; }
 
 
         public MainWindowViewModel()
@@ -38,12 +39,14 @@ namespace QuizQuest.ViewModel
 
             ConfigurationViewModel = new ConfigurationViewModel(this);
 
-
             MenubarViewModel = new MenubarViewModel(this);
 
-            PlayerViewModel = new PlayerViewModel(this);
-            
-        }
+            DialogViewModel = new DialogViewModel(this);
 
+            PlayerViewModel = new PlayerViewModel(this);
+
+        }
+            
     }
+
 }

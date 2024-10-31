@@ -18,13 +18,13 @@ namespace QuizQuest.ViewModel
         private readonly MainWindowViewModel? mainWindowViewModel;
         public DelegateCommand ExitProgramCommand { get; }
 
-        public DelegateCommand OpenPackOptionCommand { get; } //flytta till QPViewModel?
+        public DelegateCommand OpenPackOptionCommand { get; } //flytta till DialogViewModel?
 
-        public DelegateCommand CreateNewPackCommand { get; } //flytta till QPViewModel?
+        public DelegateCommand CreateNewPackCommand { get; } //flytta till DialogViewModel?
 
         public DelegateCommand GoFullScreenCommand { get; }
 
-        public DelegateCommand ImportCommand { get; }
+        public DelegateCommand ImportCommand { get; } //Flytta till DialogViewModel?
 
         public MenubarViewModel(MainWindowViewModel mainWindowViewModel)
         {
