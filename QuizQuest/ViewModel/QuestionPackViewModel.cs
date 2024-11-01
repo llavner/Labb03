@@ -10,18 +10,9 @@ namespace QuizQuest.ViewModel
     {
 
         private readonly QuestionPack _model;
-
-
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
-
+        public QuestionPack? Pack { get; }
         public ObservableCollection<Question> Questions { get; }
-
-        public DelegateCommand? AddQuestionPackCommand { get; } //Move to DialogViewModel?*
-        public DelegateCommand? RemoveQuestionPackCommand { get; } //Move to DialogViewModel?*
-        public DelegateCommand? CancelCommand { get; } //Move to DialogViewModel?*
-        public QuestionPack? pack { get; }
-
-
         public string Name
         {
             get => _model.Name;
@@ -57,40 +48,10 @@ namespace QuizQuest.ViewModel
             this._model = model;
             this.Questions = new ObservableCollection<Question>(model.Questions);
 
-            AddQuestionPackCommand = new DelegateCommand(AddQuestionPack);
-
-            //RemoveQuestionPackCommand = new DelegateCommand(RemoveQuestionPack);
-
-            CancelCommand = new DelegateCommand(Cancel);
-
-            var packTest = new QuestionPack(Name, Difficulty, TimeLimit);
-        }
-
-        private void AddQuestionPack(object obj)
-        {
-            
-            var pack = new QuestionPack(Name, Difficulty, TimeLimit);
-
-            
-
-            if (obj is Window window)
-            {
-
-                window.Close();
-
-            }
-        }
-        private void Cancel(object obj)
-        {
-
-            if (obj is Window window)
-            {
-
-                window.Close();
-            }
-
-
+            // Gör nya delegatecommands till createnewpackDialog. Create+
         }
 
     }
+
 }
+

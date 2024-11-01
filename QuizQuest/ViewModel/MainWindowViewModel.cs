@@ -25,7 +25,7 @@ namespace QuizQuest.ViewModel
             { 
                 _activePack = value;
                 RaisedPropertyChanged();
-                RaisedPropertyChanged(nameof(ActivePack));
+                //RaisedPropertyChanged(nameof(ActivePack));
             }
         }
         public PlayerViewModel PlayerViewModel { get; }
@@ -35,7 +35,11 @@ namespace QuizQuest.ViewModel
 
         public MainWindowViewModel()
         {
-            ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack"));
+            ActivePack = new QuestionPackViewModel(new QuestionPack("My Question Pack")); //TestPack tills jag har en riktig lista att jobba med.
+
+            Packs = new ObservableCollection<QuestionPackViewModel>();
+
+            Packs.Add(new QuestionPackViewModel(new QuestionPack("My Question Pack"))); //test
 
             ConfigurationViewModel = new ConfigurationViewModel(this);
 

@@ -1,10 +1,5 @@
 ﻿using QuizQuest.Command;
 using System.Windows;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using QuizQuest.Dialogs;
 
 namespace QuizQuest.ViewModel
@@ -12,31 +7,21 @@ namespace QuizQuest.ViewModel
     class DialogViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? mainWindowViewModel;
-
-        public DelegateCommand? AddPackDialogCommand { get; }
-        public DelegateCommand? RemovePackDialogCommand { get; }
+        public DelegateCommand? NewPackDialogCommand { get; }
+        public DelegateCommand? ImportDialogCommand { get; }
+        public DelegateCommand? AddDialogCommand { get; }
         public DelegateCommand? CancelDialogCommand { get; }
-
-        public DelegateCommand OptionDialogCommand { get; }
+        public DelegateCommand? OptionDialogCommand { get; }
 
         public DialogViewModel(MainWindowViewModel mainWindowViewModel)
         {
             this.mainWindowViewModel = mainWindowViewModel;
 
-            AddPackDialogCommand = new DelegateCommand(AddPackDialog);
-            RemovePackDialogCommand = new DelegateCommand(RemovePackDialog);
+            NewPackDialogCommand = new DelegateCommand(NewPackDialog);
+            ImportDialogCommand = new DelegateCommand(ImportDialog);
             OptionDialogCommand = new DelegateCommand(OptionDialog);
             CancelDialogCommand = new DelegateCommand(CancelDialog);
-        }
-
-        private void AddPackDialog(object obj)
-        {
-
-        }
-
-        private void RemovePackDialog(object obj)
-        {
-
+            AddDialogCommand = new DelegateCommand(AddDialog);
         }
 
         private void NewPackDialog(object obj)
@@ -51,14 +36,32 @@ namespace QuizQuest.ViewModel
 
             var result = packOptionDialog.ShowDialog();
         }
+        private void ImportDialog(object obj)
+        {
+            ImportPackDialog importPackDialog = new();
 
+            var result = importPackDialog.ShowDialog();
+
+        }
+        private void AddDialog(object obj)
+        {
+
+            //var newPack = mainWindowViewModel.ActivePack;
+
+            var newPack = new QuestionPackViewModel(new Model.QuestionPack(name:"New Pack", difficulty:Model.Difficulty.Medium, timeLimit: 30));
+            
+            
+            if (obj is Window window)
+
+                window.Close();
+        }
         private void CancelDialog(object obj)
         {
             if (obj is Window window)
 
                 window.Close();
         }
-            
+
 
 
     }

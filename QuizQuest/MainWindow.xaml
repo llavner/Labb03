@@ -4,20 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QuizQuest.Views"
+        xmlns:vm="clr-namespace:QuizQuest.ViewModel"
         mc:Ignorable="d"
         MinHeight="400" MinWidth="700"
         Icon="pack://application:,,,/Assets/qq.ico"
         Title="QuizQuest 1.0" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen"
-        DataContext="{Binding MenubarViewModel}">
+        WindowStartupLocation="CenterScreen">
 
-    <Window.InputBindings>
-
-    <KeyBinding Key="X" Modifiers="Ctrl"
-                Command="{Binding ExitProgramCommand}"/>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
         
-    </Window.InputBindings>
-      
+    
     <Grid>
 
         <local:MenuView Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
