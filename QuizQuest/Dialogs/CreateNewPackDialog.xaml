@@ -10,7 +10,7 @@
         Title="CreateNewPackDialog" Height="250" Width="250">
 
     <Window.DataContext>
-        <vm:MainWindowViewModel x:Name="mainWindowViewModel" />
+        <vm:MainWindowViewModel/>
     </Window.DataContext>
 
     <Grid>
@@ -22,7 +22,7 @@
             </StackPanel.Resources>
 
             <Label Content="Pack Name:"/>
-            <TextBox x:Name="packName" Width="auto" Text="" />
+            <TextBox x:Name="packName" Width="auto" Text="{Binding QuestionPackViewModel.Name}" />
 
             <Label Content="Difficulty:"/>
             <ComboBox x:Name="comboboxDifficulty" SelectedIndex="1">
@@ -46,10 +46,10 @@
                     Margin="10">
 
             <Button x:Name="addButton" Content="Add" 
-                    Margin="10" Padding="5" Command="{Binding DialogViewModel.AddDialogCommand}"
+                    Margin="10" Padding="5" Command="{Binding QuestionPackViewModel.AddPackCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
             <Button x:Name="cancelButton" Content="Cancel" 
-                    Margin="10" Padding="5" Command="{Binding DialogViewModel.CancelDialogCommand}"
+                    Margin="10" Padding="5" Command="{Binding QuestionPackViewModel.CancelPackCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
 
         </StackPanel>

@@ -8,6 +8,10 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" d:Background="AliceBlue">
 
+    <!--<UserControl.DataContext>
+        <vm:MainWindowViewModel/>
+    </UserControl.DataContext>-->
+    
      <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -25,19 +29,19 @@
             
             <Button x:Name="packOption"
                     Margin="1"
-                    Command="{Binding DialogViewModel.OptionDialogCommand}"
+                    Command="{Binding QuestionPackViewModel.OptionCommand}"
                     Content="{fa:Icon sliders}"/>
 
 
             <Button x:Name="addQuestion"
                     Margin="1"
-                    Command="{Binding ConfigurationViewModel.AddQuestionCommand}"
+                    Command="{Binding ConfigurationViewModel.QuestionAddCommand}"
                     Content="{fa:Icon plus}"/>
 
             <Button x:Name="removeQuestion"
                     Margin="1"
                     Content="{fa:Icon minus}"
-                    Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}">
+                    Command="{Binding ConfigurationViewModel.QuestionRemoveCommand}">
 
                 <Button.Style>
                     <Style TargetType="Button">
@@ -75,10 +79,8 @@
 
             </ListBox>
         </Border>
-                
-
-
-        <StackPanel Grid.Column="1" Grid.Row="1"
+         
+         <StackPanel Grid.Column="1" Grid.Row="1"
                     VerticalAlignment="Stretch"
                     HorizontalAlignment="Stretch"
                     Width="300" Height="300">

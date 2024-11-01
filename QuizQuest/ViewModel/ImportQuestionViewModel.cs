@@ -1,26 +1,28 @@
 ﻿using QuizQuest.Command;
-using System.Windows;
 using QuizQuest.Dialogs;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace QuizQuest.ViewModel
 {
-    class DialogViewModel : ViewModelBase
+    class ImportQuestionViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? mainWindowViewModel;
-        
         public DelegateCommand? ImportDialogCommand { get; }
-        
-        public DialogViewModel(MainWindowViewModel mainWindowViewModel)
+
+
+        public ImportQuestionViewModel(MainWindowViewModel mainWindowViewModel)
         {
             this.mainWindowViewModel = mainWindowViewModel;
 
-            
+
             ImportDialogCommand = new DelegateCommand(ImportDialog);
 
-            //Delete whole class and make a new class: ImportQuestion
-            
         }
-
+            
         private void ImportDialog(object obj)
         {
             ImportPackDialog importPackDialog = new();
@@ -28,7 +30,5 @@ namespace QuizQuest.ViewModel
             var result = importPackDialog.ShowDialog();
 
         }
-
-
     }
 }

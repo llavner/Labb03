@@ -14,8 +14,8 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-        
-    
+
+
     <Grid>
 
         <local:MenuView Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>

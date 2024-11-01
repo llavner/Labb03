@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:QuizQuest.Dialogs"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        DataContext="{Binding QuestionPackNewModel}"
-        Title="PackOptionDialog" Height="200" Width="250">
+        Title="PackOptionDialog" Height="280" Width="250">
     
     <Grid>
        
@@ -37,6 +36,14 @@
                     TickPlacement="BottomRight" TickFrequency="5"
                     SnapsToDevicePixels="True" IsSnapToTickEnabled="True"
                     />
+            <StackPanel Orientation="Horizontal" Margin="10"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <Button x:Name="addButton" Content="Update" 
+                        Margin="10" Padding="5"/>
+                <Button x:Name="cancelButton" Content="Cancel" 
+                        Margin="10" Padding="5"/>
+            </StackPanel>
         </StackPanel>
 
     </Grid>

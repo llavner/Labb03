@@ -1,19 +1,15 @@
 ﻿using QuizQuest.Command;
+using QuizQuest.Dialogs;
 using QuizQuest.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Windows;
+
 
 namespace QuizQuest.ViewModel
 {
     internal class ConfigurationViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? mainWindowViewModel;
-        public DelegateCommand AddQuestionCommand { get; }
-        public DelegateCommand RemoveQuestionCommand { get; }
+
         public QuestionPackViewModel? ActivePack => mainWindowViewModel?.ActivePack;
 
         private Question? _activeQuestion;
@@ -24,28 +20,66 @@ namespace QuizQuest.ViewModel
             {
                 _activeQuestion = value;
                 RaisedPropertyChanged();
-                RemoveQuestionCommand.RaisedCanExecuteChanged();
+                QuestionRemoveCommand.RaisedCanExecuteChanged();
             }
         }
+
+        // Delegate Commands:
+        public DelegateCommand? PackDialogCommand { get; }
+        public DelegateCommand? PackDialogOptionCommand { get; }
+        public DelegateCommand? PackAddCommand { get; }
+        public DelegateCommand? PackCancelButtonCommand { get; }
+        public DelegateCommand QuestionAddCommand { get; }
+        public DelegateCommand QuestionRemoveCommand { get; }
 
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
 
             this.mainWindowViewModel = mainWindowViewModel;
 
-            AddQuestionCommand = new DelegateCommand(AddQuestion);
+            PackDialogCommand = new DelegateCommand(PackDialog);
+            PackDialogOptionCommand = new DelegateCommand(PackDialogOption);
+            PackAddCommand = new DelegateCommand(PackAddButton);
+            PackCancelButtonCommand = new DelegateCommand(PackCancelButton);
 
-            RemoveQuestionCommand = new DelegateCommand(RemoveQuestion, CanRemoveQuestion);
-            
+            QuestionAddCommand = new DelegateCommand(QuestionAdd);
+            QuestionRemoveCommand = new DelegateCommand(QuestionRemove, QuestionCanRemove);
+
         }
-        private void AddQuestion(object obj)
+        private void PackDialog(object obj)
+        {
+            CreateNewPackDialog createNewPackDialog = new();
+
+            var result = createNewPackDialog.ShowDialog();
+        }
+        private void PackAddButton(object obj)
+        {
+
+            if (obj is Window window)
+
+                window.Close();
+        }
+        private void PackCancelButton(object obj)
+        {
+            if (obj is Window window)
+
+                window.Close();
+        }
+        private void PackDialogOption(object obj)
+        {
+            PackOptionDialog packOptionDialog = new();
+
+            var result = packOptionDialog.ShowDialog();
+        }
+
+        private void QuestionAdd(object obj)
         {
 
             ActivePack?.Questions.Add(new Question("New Question", "", "", "", ""));
 
             ActiveQuestion = ActivePack.Questions.Last();
         }
-        private void RemoveQuestion(object obj)
+        private void QuestionRemove(object obj)
         {
             if (ActivePack?.Questions == null || ActiveQuestion == null)
             {
@@ -55,7 +89,7 @@ namespace QuizQuest.ViewModel
             ActivePack?.Questions.Remove(ActiveQuestion);
             ActiveQuestion = ActivePack.Questions.FirstOrDefault();
         }
-        private bool CanRemoveQuestion(object obj)
+        private bool QuestionCanRemove(object obj)
         {
             if (ActivePack?.Questions != null && ActiveQuestion != null)
                 return true;

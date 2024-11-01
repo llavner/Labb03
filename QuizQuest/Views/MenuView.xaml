@@ -8,13 +8,18 @@
              xmlns:vm="clr-namespace:QuizQuest.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="50" d:DesignWidth="500">
+    
+    <!--<UserControl.DataContext>
+        <vm:MainWindowViewModel/>
+    </UserControl.DataContext>-->
+    
         <Grid>
         <Menu Width="auto">
 
         <MenuItem Header="_File">
 
                 <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"
-                          Command="{Binding DialogViewModel.NewPackDialogCommand}"/> 
+                          Command="{Binding ConfigurationViewModel.PackDialogCommand}"/> 
             
                 <MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}" 
                           Command=""/>
@@ -25,7 +30,7 @@
                 <Separator/>
             
                 <MenuItem Header="Import Questions" Icon="{fa:Icon fileimport}"
-                          Command="{Binding DialogViewModel.ImportDialogCommand}"/>
+                          Command="{Binding ImportQuestionViewModel.ImportDialogCommand}"/>
             
                 <Separator/>
             
@@ -33,26 +38,21 @@
                           InputGestureText="Ctrl + x"
                           Command="{Binding MenubarViewModel.ExitProgramCommand}"/> 
                           
-            
-
-
-            </MenuItem>
+           </MenuItem>
 
 
             <MenuItem Header="_Edit">
 
                 <MenuItem Header="_Add Question" Icon="{fa:Icon plus}"
                           x:Name="addQuestion"
-                            Command="{Binding ConfigurationViewModel.AddQuestionCommand}"/>
+                            Command="{Binding ConfigurationViewModel.QuestionAddCommand}"/>
 
                 <MenuItem Header="_Remove Question" Icon="{fa:Icon minus}"
                           x:Name="removeQuestion"
-                          Command="{Binding ConfigurationViewModel.RemoveQuestionCommand}"/>
+                          Command="{Binding ConfigurationViewModel.QuestionRemoveCommand}"/>
                 
                 <MenuItem Header="Pack _Option" Icon="{fa:Icon sliders}"
-                          Command="{Binding DataContext.DialogViewModel.OptionDialogCommand, 
-                          
-                                    RelativeSource={RelativeSource AncestorType=Window}}"/>
+                          Command="{Binding ConfigurationViewModel.PackDialogOptionCommand}"/>
 
             </MenuItem>
 
