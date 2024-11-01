@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:QuizQuest.Dialogs"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="ImportPackDialog" Height="250" Width="250">
+        Title="ImportPackDialog" Height="300" Width="250">
     <Grid>
 
         <StackPanel Orientation="Vertical" Margin="10,10,10,10" Grid.ColumnSpan="2">
@@ -15,7 +15,7 @@
                     <Setter Property="FontWeight" Value="Bold"/>
                 </Style>
             </StackPanel.Resources>
-
+            <Label Content="Import" FontSize="20" HorizontalAlignment="Center"/>
             <Label Content="Category:"/>
             <ComboBox>
               

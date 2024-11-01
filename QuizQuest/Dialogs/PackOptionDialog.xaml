@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:QuizQuest.Dialogs"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="PackOptionDialog" Height="280" Width="250">
+        Title="PackOptionDialog" Height="300" Width="250">
     
     <Grid>
        
@@ -16,7 +16,7 @@
                     <Setter Property="FontWeight" Value="Bold"/>
                 </Style>
             </StackPanel.Resources>
-            
+            <Label Content="Options" FontSize="20" HorizontalAlignment="Center"/>
             <Label Content="Pack Name:"/>
             <TextBox x:Name="optionName" Width="auto"/>
 

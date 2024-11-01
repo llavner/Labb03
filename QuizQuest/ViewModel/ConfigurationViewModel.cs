@@ -2,6 +2,7 @@
 using QuizQuest.Dialogs;
 using QuizQuest.Model;
 using System.Windows;
+using System.Xml.Linq;
 
 
 namespace QuizQuest.ViewModel
@@ -27,7 +28,7 @@ namespace QuizQuest.ViewModel
         // Delegate Commands:
         public DelegateCommand? PackDialogCommand { get; }
         public DelegateCommand? PackDialogOptionCommand { get; }
-        public DelegateCommand? PackAddCommand { get; }
+        public DelegateCommand? PackAddButtonCommand { get; }
         public DelegateCommand? PackCancelButtonCommand { get; }
         public DelegateCommand QuestionAddCommand { get; }
         public DelegateCommand QuestionRemoveCommand { get; }
@@ -39,11 +40,13 @@ namespace QuizQuest.ViewModel
 
             PackDialogCommand = new DelegateCommand(PackDialog);
             PackDialogOptionCommand = new DelegateCommand(PackDialogOption);
-            PackAddCommand = new DelegateCommand(PackAddButton);
+            PackAddButtonCommand = new DelegateCommand(PackAddButton);
             PackCancelButtonCommand = new DelegateCommand(PackCancelButton);
 
             QuestionAddCommand = new DelegateCommand(QuestionAdd);
             QuestionRemoveCommand = new DelegateCommand(QuestionRemove, QuestionCanRemove);
+
+            
 
         }
         private void PackDialog(object obj)
@@ -54,6 +57,8 @@ namespace QuizQuest.ViewModel
         }
         private void PackAddButton(object obj)
         {
+             new QuestionPackViewModel(new QuestionPack(QuestionPackViewModel.Name ));
+            //new QuestionPackViewModel(new QuestionPack(Name, Difficulty, TimeLimit));
 
             if (obj is Window window)
 

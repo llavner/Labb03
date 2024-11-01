@@ -12,7 +12,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel x:Name="mainWindowViewModel"/>
     </Window.DataContext>
 
 

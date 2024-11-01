@@ -1,4 +1,5 @@
 ﻿using QuizQuest.Command;
+using QuizQuest.Converters;
 using QuizQuest.Model;
 using QuizQuest.ViewModel;
 using System;
@@ -28,11 +29,11 @@ namespace QuizQuest.ViewModel
                 //RaisedPropertyChanged(nameof(ActivePack));
             }
         }
-        public QuestionPackViewModel? QuestionPackViewModel { get; }
         public PlayerViewModel PlayerViewModel { get; }
         public MenubarViewModel MenubarViewModel { get; }
         public DialogViewModel DialogViewModel { get; }
         public ImportQuestionViewModel ImportQuestionViewModel { get; }
+        
 
         public MainWindowViewModel()
         {
@@ -41,8 +42,6 @@ namespace QuizQuest.ViewModel
             Packs = new ObservableCollection<QuestionPackViewModel>();
 
             Packs.Add(new QuestionPackViewModel(new QuestionPack("My Question Pack"))); //test
-
-            //QuestionPackViewModel = new QuestionPackViewModel(this);
 
             ConfigurationViewModel = new ConfigurationViewModel(this);
 
