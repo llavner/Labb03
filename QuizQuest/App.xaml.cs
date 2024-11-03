@@ -4,11 +4,9 @@ using System.Windows;
 
 namespace QuizQuest
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+
     }
 
 }

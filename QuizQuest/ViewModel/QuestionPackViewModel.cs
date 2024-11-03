@@ -14,20 +14,9 @@ namespace QuizQuest.ViewModel
     {
         private readonly QuestionPack _model;
 
-        //public event NotifyCollectionChangedEventHandler? CollectionChanged;
+        public event NotifyCollectionChangedEventHandler? CollectionChanged;
         public event PropertyChangedEventHandler? PropertyChanged;
-
         public ObservableCollection<Question>? Questions { get; }
-
-        //DelegateCommands
-
-        public DelegateCommand? NewPackCommand { get; }
-        public DelegateCommand? OptionCommand { get; }
-        public DelegateCommand? AddPackCommand { get; }
-        public DelegateCommand? CancelPackCommand { get; }
-
-
-        // Properties
         public string Name
         {
             get => _model.Name;

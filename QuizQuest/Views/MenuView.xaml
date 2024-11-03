@@ -9,11 +9,7 @@
              mc:Ignorable="d"
              d:DesignHeight="50" d:DesignWidth="500">
     
-    <!--<UserControl.DataContext>
-        <vm:MainWindowViewModel/>
-    </UserControl.DataContext>-->
-
-    <Grid>
+     <Grid>
         <Menu Width="auto">
 
         <MenuItem Header="_File">
@@ -21,12 +17,7 @@
                 <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"
                           Command="{Binding ConfigurationViewModel.PackDialogCommand}"/>
 
-                <!--<MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}"/>
-                    <MenuItem Header="Pack1"/>-->
-
-
-
-
+               
                 <MenuItem Header="_Delete Question Pack" Icon="{fa:Icon folderminus}"
                           Command="{Binding ConfigurationViewModel.PackDeleteCommand}"/>
             

@@ -18,7 +18,7 @@ namespace QuizQuest.ViewModel
 
             this.mainWindowViewModel = mainWindowViewModel;
 
-            
+
             ExitProgramCommand = new DelegateCommand(ExitProgram);
             GoFullScreenCommand = new DelegateCommand(GoFullScreen);
 
@@ -41,7 +41,7 @@ namespace QuizQuest.ViewModel
 
         }
 
-        private void ExitProgram(object obj) //Lägg till Save?
+        private void ExitProgram(object obj) //Lägg till Save to file?
         {
             var result = MessageBox.Show("Are you sure you want to Exit?", "Exit Program", MessageBoxButton.YesNo);
 
@@ -69,7 +69,4 @@ namespace QuizQuest.ViewModel
             }
         }
     }
-
-
-
 }

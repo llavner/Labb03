@@ -27,28 +27,9 @@ namespace QuizQuest.ViewModel
                 QuestionDeleteCommand.RaisedCanExecuteChanged();
             }
         }
-
         public string Name { get; set; }
         public Difficulty Difficulty { get; set; }
-
-/*      private string _selctedDifficulty; 
-        public string SelectedDifficulty
-        {
-            get { return _selctedDifficulty; }
-            set 
-            { 
-                if(_selctedDifficulty != value)
-                {
-                _selctedDifficulty = value;
-                RaisedPropertyChanged();
-                }
-
-            }
-        }*/
-
         public int TimeLimit { get; set; }
-
-
 
         // Delegate Commands:
         public DelegateCommand? PackDialogCommand { get; }
@@ -65,8 +46,6 @@ namespace QuizQuest.ViewModel
 
             this.mainWindowViewModel = mainWindowViewModel;
 
-            
-
             PackDialogCommand = new DelegateCommand(PackDialog);
             PackDialogOptionCommand = new DelegateCommand(PackDialogOption);
             PackAddButtonCommand = new DelegateCommand(PackAddButton);
@@ -76,9 +55,6 @@ namespace QuizQuest.ViewModel
             QuestionDeleteCommand = new DelegateCommand(QuestionDelete, QuestionCanRemove);
         
         }
-
-
-
         private void PackDialog(object obj)
         {
             CreateNewPackDialog createNewPackDialog = new();
@@ -89,10 +65,10 @@ namespace QuizQuest.ViewModel
         {
             var newPack = new QuestionPackViewModel(new QuestionPack("New Pack"));
             mainWindowViewModel.Packs.Add(newPack);
+
             mainWindowViewModel.ActivePack = newPack;
             
-
-            if (obj is Window window)
+            if (obj is Window window) 
                 window.Close();
 
         }
@@ -110,7 +86,7 @@ namespace QuizQuest.ViewModel
         }
         private void PackDelete(object obj)
         {
-            if (mainWindowViewModel.Packs == null || ActivePack == null)
+            if (mainWindowViewModel.Packs.Count >= 1)
             {
 
                 return;
@@ -121,10 +97,10 @@ namespace QuizQuest.ViewModel
         }
         private bool PackCanRemove(object obj)
         {
-            if (mainWindowViewModel.Packs != null && ActivePack != null)
-                return true;
-            else
+            if (mainWindowViewModel.Packs.Count >= 1)
                 return false;
+            else
+                return true;
 
         }
         private void QuestionAdd(object obj)
