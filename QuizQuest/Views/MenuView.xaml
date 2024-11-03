@@ -8,31 +8,44 @@
              xmlns:vm="clr-namespace:QuizQuest.ViewModel"
              mc:Ignorable="d"
              d:DesignHeight="50" d:DesignWidth="500">
-    
-     <Grid>
+
+    <!--<UserControl.DataContext>
+    <vm:MainWindowViewModel/>
+    </UserControl.DataContext>-->
+    <Grid>
         <Menu Width="auto">
 
-        <MenuItem Header="_File">
+            <MenuItem Header="_File">
 
                 <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"
                           Command="{Binding ConfigurationViewModel.PackDialogCommand}"/>
 
-               
+
                 <MenuItem Header="_Delete Question Pack" Icon="{fa:Icon folderminus}"
                           Command="{Binding ConfigurationViewModel.PackDeleteCommand}"/>
-            
+
                 <Separator/>
-            
+
                 <MenuItem Header="Import Questions" Icon="{fa:Icon fileimport}"
                           Command="{Binding ImportQuestionViewModel.ImportDialogCommand}"/>
-            
+
                 <Separator/>
-            
+
                 <MenuItem Header="E_xit" Icon="{fa:Icon dooropen}"
                           InputGestureText="Ctrl + X"
-                          Command="{Binding MenubarViewModel.ExitProgramCommand}"/> 
-                          
-           </MenuItem>
+                          Command="{Binding MenubarViewModel.ExitProgramCommand}"/>
+
+            </MenuItem>
+
+            <MenuItem Header="Packs" ItemsSource="{Binding Packs}" DisplayMemberPath="Name">
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Command" Value="{Binding MainWindowViewModel.ActivePack, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                        <Setter Property="CommandParameter" Value="{Binding}"/>
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
+
 
 
             <MenuItem Header="_Edit">
@@ -44,22 +57,19 @@
                 <MenuItem Header="_Remove Question" Icon="{fa:Icon minus}"
                           x:Name="removeQuestion"
                           Command="{Binding ConfigurationViewModel.QuestionDeleteCommand}"/>
-                
+
                 <MenuItem Header="Pack _Option" Icon="{fa:Icon sliders}"
                           Command="{Binding ConfigurationViewModel.PackDialogOptionCommand}"/>
 
             </MenuItem>
 
-            <MenuItem Header="Packs" ItemsSource="{Binding Packs}" DisplayMemberPath="Name">
-                
-            </MenuItem>
-                
+
 
 
             <MenuItem Header="_View">
                 <MenuItem Header="_Play" Icon="{fa:Icon play}"
                           Command="{Binding MenubarViewModel.ShowPlayCommand}"/>
-                
+
                 <MenuItem Header="_Edit" Icon="{fa:Icon gear}"
                           Command="{Binding MenubarViewModel.ShowEditCommand}"/>
                 <Separator/>
@@ -67,9 +77,6 @@
                           Command="{Binding MenubarViewModel.GoFullScreenCommand}"/>
 
             </MenuItem>
-
-
-
 
         </Menu>
     </Grid>

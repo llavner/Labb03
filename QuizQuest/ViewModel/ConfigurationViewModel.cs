@@ -1,11 +1,7 @@
 ﻿using QuizQuest.Command;
-using QuizQuest.Converters;
 using QuizQuest.Dialogs;
 using QuizQuest.Model;
-using System.Collections.Specialized;
 using System.Windows;
-using System.Xml.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 
 namespace QuizQuest.ViewModel
@@ -31,7 +27,7 @@ namespace QuizQuest.ViewModel
         public Difficulty Difficulty { get; set; }
         public int TimeLimit { get; set; }
 
-        // Delegate Commands:
+        
         public DelegateCommand? PackDialogCommand { get; }
         public DelegateCommand? PackDialogOptionCommand { get; }
         public DelegateCommand? PackAddButtonCommand { get; }
@@ -86,10 +82,10 @@ namespace QuizQuest.ViewModel
         }
         private void PackDelete(object obj)
         {
-            if (mainWindowViewModel.Packs.Count >= 1)
+            if (mainWindowViewModel.Packs.Count == 1)
             {
-
                 return;
+
             }
             mainWindowViewModel.Packs.Remove(ActivePack);
             mainWindowViewModel.ActivePack = mainWindowViewModel.Packs.FirstOrDefault();
@@ -97,7 +93,7 @@ namespace QuizQuest.ViewModel
         }
         private bool PackCanRemove(object obj)
         {
-            if (mainWindowViewModel.Packs.Count >= 1)
+            if (mainWindowViewModel.Packs.Count == 1)
                 return false;
             else
                 return true;

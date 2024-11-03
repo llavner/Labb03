@@ -18,7 +18,7 @@
             </StackPanel.Resources>
             <Label Content="Options" FontSize="20" HorizontalAlignment="Center"/>
             <Label Content="Pack Name:"/>
-            <TextBox x:Name="optionName" Width="auto"/>
+            <TextBox x:Name="optionName" Width="auto" Text=""/> 
 
             <Label Content="Difficulty:"/>
             <ComboBox SelectedIndex="1">
