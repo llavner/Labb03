@@ -8,9 +8,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800" d:Background="AliceBlue">
 
-    <!--<UserControl.DataContext>
-        <vm:MainWindowViewModel/>
-    </UserControl.DataContext>-->
+    
     
      <Grid>
         <Grid.RowDefinitions>
@@ -22,8 +20,18 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-            
-
+         
+        <!--<StackPanel Orientation="Horizontal">
+            <Label Content="Selected Pack:" FontWeight="Bold"/>
+            <ComboBox ItemsSource="{Binding Packs, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding ConfigurationViewModel.ActivePack.Name}"
+                      DisplayMemberPath="Name"
+                      Margin="3" Padding="1"
+                      HorizontalAlignment="Left" VerticalContentAlignment="Center"
+                      Width="200" Height="20" 
+                      SelectedIndex="0" />
+        </StackPanel>-->
+        <!--<Label Content="{Binding ActivePack.Name}" FontWeight="Bold" FontSize="12" Margin="5"/>-->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
                     VerticalAlignment="Center" Grid.Row="0">
             
@@ -38,10 +46,10 @@
                     Command="{Binding ConfigurationViewModel.QuestionAddCommand}"
                     Content="{fa:Icon plus}"/>
 
-            <Button x:Name="removeQuestion"
+            <Button x:Name="delQuestion"
                     Margin="1"
                     Content="{fa:Icon minus}"
-                    Command="{Binding ConfigurationViewModel.QuestionRemoveCommand}">
+                    Command="{Binding ConfigurationViewModel.QuestionDeleteCommand}">
 
                 <Button.Style>
                     <Style TargetType="Button">

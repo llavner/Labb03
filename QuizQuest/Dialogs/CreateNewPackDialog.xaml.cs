@@ -12,6 +12,7 @@ namespace QuizQuest.Dialogs
         {
             InitializeComponent();
 
+
         }
     }
 }

@@ -8,14 +8,10 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="CreateNewPackDialog" Height="300" Width="250">
-
-    <Window.DataContext>
-        <vm:MainWindowViewModel/>
-    </Window.DataContext>
-
-    <Window.Resources>
+    
+    <!--<Window.Resources>
         <Converters:DifficultyConverter x:Key="DifficultyConverter"/>
-    </Window.Resources>
+    </Window.Resources>-->
     <Grid>
         <StackPanel Orientation="Vertical" Margin="10,10,10,10" Grid.ColumnSpan="2">
             <StackPanel.Resources>
@@ -26,17 +22,17 @@
 
             <Label Content="New pack" FontSize="20" HorizontalAlignment="Center"/>
             <Label Content="Pack Name:"/>
-            <TextBox x:Name="packName" Width="auto" Text="{Binding QuestionPackViewModel.Name}" />
+            <TextBox x:Name="packName" Width="auto" Text="{Binding ConfigurationViewModel.Name}" />
 
             <Label Content="Difficulty:"/>
-            <ComboBox x:Name="difficulty" SelectedIndex="1"
-                      ItemsSource="{Binding QuestionPackViewModel.Difficulty, Mode=TwoWay,
-                                    Converter={StaticResource DifficultyConverter}}"
-                      SelectedValuePath="Content">
-                <ComboBoxItem Content="Easy" />
-                <ComboBoxItem Content="Medium"/>
+            <ComboBox x:Name="difficulty" SelectedIndex="1">
+                <ComboBoxItem Content="Easy"/>
+                <ComboBoxItem Content="Medium" />
                 <ComboBoxItem Content="Hard"/>
             </ComboBox>
+
+                
+                
             <StackPanel Orientation="Horizontal">
                 <Label Content="Time Limit:"/>
                 <Label x:Name="dialogTimer" Content="{Binding ElementName=dialogSlider, Path=Value}"
@@ -45,7 +41,7 @@
             <Slider x:Name="dialogSlider" Maximum="120"
                     TickPlacement="BottomRight" TickFrequency="5"
                     SnapsToDevicePixels="True" IsSnapToTickEnabled="True"
-                    Value="{Binding QuestionPackViewModel.TimeLimit}"/>
+                    Value="{Binding ConfigurationViewModel.TimeLimit}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" 
@@ -53,11 +49,12 @@
                     Margin="10">
 
             <Button x:Name="addButton" Content="Add" 
-                    Margin="10" Padding="5" Command="{Binding ConfigurationViewModel.PackAddButtonCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                    Margin="10" Padding="5" Command="{Binding DataContext.ConfigurationViewModel.PackAddButtonCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, AncestorLevel=1}}"/>
             <Button x:Name="cancelButton" Content="Cancel" 
                     Margin="10" Padding="5" Command="{Binding ConfigurationViewModel.PackCancelButtonCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                    
 
         </StackPanel>
     </Grid>

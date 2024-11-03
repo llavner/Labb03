@@ -1,8 +1,11 @@
 ﻿using QuizQuest.Command;
+using QuizQuest.Converters;
 using QuizQuest.Dialogs;
 using QuizQuest.Model;
+using System.Collections.Specialized;
 using System.Windows;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 
 namespace QuizQuest.ViewModel
@@ -21,34 +24,61 @@ namespace QuizQuest.ViewModel
             {
                 _activeQuestion = value;
                 RaisedPropertyChanged();
-                QuestionRemoveCommand.RaisedCanExecuteChanged();
+                QuestionDeleteCommand.RaisedCanExecuteChanged();
             }
         }
+
+        public string Name { get; set; }
+        public Difficulty Difficulty { get; set; }
+
+/*      private string _selctedDifficulty; 
+        public string SelectedDifficulty
+        {
+            get { return _selctedDifficulty; }
+            set 
+            { 
+                if(_selctedDifficulty != value)
+                {
+                _selctedDifficulty = value;
+                RaisedPropertyChanged();
+                }
+
+            }
+        }*/
+
+        public int TimeLimit { get; set; }
+
+
 
         // Delegate Commands:
         public DelegateCommand? PackDialogCommand { get; }
         public DelegateCommand? PackDialogOptionCommand { get; }
         public DelegateCommand? PackAddButtonCommand { get; }
         public DelegateCommand? PackCancelButtonCommand { get; }
+        public DelegateCommand? PackSelectCommand { get; }
+        public DelegateCommand? PackDeleteCommand { get; }
         public DelegateCommand QuestionAddCommand { get; }
-        public DelegateCommand QuestionRemoveCommand { get; }
+        public DelegateCommand QuestionDeleteCommand { get; }
 
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
 
             this.mainWindowViewModel = mainWindowViewModel;
 
+            
+
             PackDialogCommand = new DelegateCommand(PackDialog);
             PackDialogOptionCommand = new DelegateCommand(PackDialogOption);
             PackAddButtonCommand = new DelegateCommand(PackAddButton);
             PackCancelButtonCommand = new DelegateCommand(PackCancelButton);
-
+            PackDeleteCommand = new DelegateCommand(PackDelete, PackCanRemove);
             QuestionAddCommand = new DelegateCommand(QuestionAdd);
-            QuestionRemoveCommand = new DelegateCommand(QuestionRemove, QuestionCanRemove);
-
-            
-
+            QuestionDeleteCommand = new DelegateCommand(QuestionDelete, QuestionCanRemove);
+        
         }
+
+
+
         private void PackDialog(object obj)
         {
             CreateNewPackDialog createNewPackDialog = new();
@@ -57,12 +87,14 @@ namespace QuizQuest.ViewModel
         }
         private void PackAddButton(object obj)
         {
-             new QuestionPackViewModel(new QuestionPack(QuestionPackViewModel.Name ));
-            //new QuestionPackViewModel(new QuestionPack(Name, Difficulty, TimeLimit));
+            var newPack = new QuestionPackViewModel(new QuestionPack("New Pack"));
+            mainWindowViewModel.Packs.Add(newPack);
+            mainWindowViewModel.ActivePack = newPack;
+            
 
             if (obj is Window window)
-
                 window.Close();
+
         }
         private void PackCancelButton(object obj)
         {
@@ -76,7 +108,25 @@ namespace QuizQuest.ViewModel
 
             var result = packOptionDialog.ShowDialog();
         }
+        private void PackDelete(object obj)
+        {
+            if (mainWindowViewModel.Packs == null || ActivePack == null)
+            {
 
+                return;
+            }
+            mainWindowViewModel.Packs.Remove(ActivePack);
+            mainWindowViewModel.ActivePack = mainWindowViewModel.Packs.FirstOrDefault();
+
+        }
+        private bool PackCanRemove(object obj)
+        {
+            if (mainWindowViewModel.Packs != null && ActivePack != null)
+                return true;
+            else
+                return false;
+
+        }
         private void QuestionAdd(object obj)
         {
 
@@ -84,7 +134,7 @@ namespace QuizQuest.ViewModel
 
             ActiveQuestion = ActivePack.Questions.Last();
         }
-        private void QuestionRemove(object obj)
+        private void QuestionDelete(object obj)
         {
             if (ActivePack?.Questions == null || ActiveQuestion == null)
             {

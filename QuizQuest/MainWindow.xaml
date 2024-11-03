@@ -12,20 +12,24 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
-        <vm:MainWindowViewModel x:Name="mainWindowViewModel"/>
+        <vm:MainWindowViewModel/>
     </Window.DataContext>
 
 
     <Grid>
 
+        
         <local:MenuView Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
 
+        
         <local:ConfigurationView Grid.Column="0" Grid.Row="1" 
-                                 Grid.ColumnSpan="2" Visibility="Visible"/>
+                                 Grid.ColumnSpan="2" Visibility="{Binding EditVisibility}"
+                                 x:Name="configView"/>
 
         <local:PlayerView Grid.Column="0" Grid.Row="0"
                           Grid.ColumnSpan="2"
-                          Grid.RowSpan="2" Visibility="Hidden"/>
+                          Grid.RowSpan="2" Visibility="{Binding PlayVisibility}"
+                          x:Name="playerView"/>
 
             <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

@@ -12,20 +12,23 @@
     <!--<UserControl.DataContext>
         <vm:MainWindowViewModel/>
     </UserControl.DataContext>-->
-    
-        <Grid>
+
+    <Grid>
         <Menu Width="auto">
 
         <MenuItem Header="_File">
 
                 <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"
-                          Command="{Binding ConfigurationViewModel.PackDialogCommand}"/> 
-            
-                <MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}" 
-                          Command=""/>
-            
+                          Command="{Binding ConfigurationViewModel.PackDialogCommand}"/>
+
+                <!--<MenuItem Header="_Select Question Pack" Icon="{fa:Icon folderopen}"/>
+                    <MenuItem Header="Pack1"/>-->
+
+
+
+
                 <MenuItem Header="_Delete Question Pack" Icon="{fa:Icon folderminus}"
-                          Command=""/>
+                          Command="{Binding ConfigurationViewModel.PackDeleteCommand}"/>
             
                 <Separator/>
             
@@ -35,7 +38,7 @@
                 <Separator/>
             
                 <MenuItem Header="E_xit" Icon="{fa:Icon dooropen}"
-                          InputGestureText="Ctrl + x"
+                          InputGestureText="Ctrl + X"
                           Command="{Binding MenubarViewModel.ExitProgramCommand}"/> 
                           
            </MenuItem>
@@ -49,24 +52,31 @@
 
                 <MenuItem Header="_Remove Question" Icon="{fa:Icon minus}"
                           x:Name="removeQuestion"
-                          Command="{Binding ConfigurationViewModel.QuestionRemoveCommand}"/>
+                          Command="{Binding ConfigurationViewModel.QuestionDeleteCommand}"/>
                 
                 <MenuItem Header="Pack _Option" Icon="{fa:Icon sliders}"
                           Command="{Binding ConfigurationViewModel.PackDialogOptionCommand}"/>
 
             </MenuItem>
 
+            <MenuItem Header="Packs" ItemsSource="{Binding Packs}" DisplayMemberPath="Name">
+                
+            </MenuItem>
+                
+
 
             <MenuItem Header="_View">
+                <MenuItem Header="_Play" Icon="{fa:Icon play}"
+                          Command="{Binding MenubarViewModel.ShowPlayCommand}"/>
                 
-                <MenuItem Header="_Play" Icon="{fa:Icon play}"/>
-                <MenuItem Header="_Edit" Icon="{fa:Icon gear}"/>
+                <MenuItem Header="_Edit" Icon="{fa:Icon gear}"
+                          Command="{Binding MenubarViewModel.ShowEditCommand}"/>
                 <Separator/>
                 <MenuItem Header="_Fullscreen" Icon="{fa:Icon expand}"
                           Command="{Binding MenubarViewModel.GoFullScreenCommand}"/>
 
-
             </MenuItem>
+
 
 
 

@@ -1,4 +1,5 @@
 ﻿using QuizQuest.Command;
+using QuizQuest.Views;
 using System.Windows;
 
 
@@ -9,21 +10,38 @@ namespace QuizQuest.ViewModel
         private readonly MainWindowViewModel? mainWindowViewModel;
         public DelegateCommand ExitProgramCommand { get; }
         public DelegateCommand GoFullScreenCommand { get; }
-        public DelegateCommand? DeletePackCommand { get; }
+        public DelegateCommand DeletePackCommand { get; }
+        public DelegateCommand ShowEditCommand { get; }
+        public DelegateCommand ShowPlayCommand { get; }
         public MenubarViewModel(MainWindowViewModel mainWindowViewModel)
         {
 
             this.mainWindowViewModel = mainWindowViewModel;
 
-            DeletePackCommand = new DelegateCommand(DeletePack);
+            
             ExitProgramCommand = new DelegateCommand(ExitProgram);
             GoFullScreenCommand = new DelegateCommand(GoFullScreen);
-        }
-        private void DeletePack(object obj)
-        {
+
+            ShowEditCommand = new DelegateCommand(Edit);
+            ShowPlayCommand = new DelegateCommand(Play);
 
         }
-        private void ExitProgram(object obj)
+
+        private void Edit(object obj)
+        {
+            mainWindowViewModel.EditVisibility = Visibility.Visible;
+            mainWindowViewModel.PlayVisibility = Visibility.Collapsed;
+        }
+
+        private void Play(object obj)
+        {
+
+            mainWindowViewModel.PlayVisibility = Visibility.Visible;
+            mainWindowViewModel.EditVisibility = Visibility.Collapsed;
+
+        }
+
+        private void ExitProgram(object obj) //Lägg till Save?
         {
             var result = MessageBox.Show("Are you sure you want to Exit?", "Exit Program", MessageBoxButton.YesNo);
 
@@ -31,7 +49,7 @@ namespace QuizQuest.ViewModel
                 Application.Current.Shutdown();
 
         }
-        public void GoFullScreen(object obj)
+        private void GoFullScreen(object obj)
         {
             var mainWindow = Application.Current.MainWindow;
 

@@ -38,7 +38,7 @@ namespace QuizQuest.ViewModel
 
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
-            //timer.Start();
+            timer.Start();
 
             UpdateButtonCommand = new DelegateCommand(UpdateButton); // 3
             
@@ -47,7 +47,7 @@ namespace QuizQuest.ViewModel
 
         private void UpdateButton(object obj) //2
         {
-            //TestData += "<";
+            TestData += "<";
             Application.Current.Shutdown();
         }
 

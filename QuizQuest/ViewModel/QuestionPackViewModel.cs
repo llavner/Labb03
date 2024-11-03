@@ -3,6 +3,8 @@ using QuizQuest.Dialogs;
 using QuizQuest.Model;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
@@ -12,9 +14,9 @@ namespace QuizQuest.ViewModel
     {
         private readonly QuestionPack _model;
 
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+        //public event NotifyCollectionChangedEventHandler? CollectionChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public QuestionPack? Pack { get; }
         public ObservableCollection<Question>? Questions { get; }
 
         //DelegateCommands
@@ -63,6 +65,7 @@ namespace QuizQuest.ViewModel
             this.Questions = new ObservableCollection<Question>(model.Questions);
 
         }
+
     }
 
 }
