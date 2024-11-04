@@ -68,10 +68,12 @@
 
             <MenuItem Header="_View">
                 <MenuItem Header="_Play" Icon="{fa:Icon play}"
-                          Command="{Binding MenubarViewModel.ShowPlayCommand}"/>
+                          Command="{Binding MenubarViewModel.ShowPlayCommand}"
+                          x:Name="play"/>
 
                 <MenuItem Header="_Edit" Icon="{fa:Icon gear}"
-                          Command="{Binding MenubarViewModel.ShowEditCommand}"/>
+                          Command="{Binding MenubarViewModel.ShowEditCommand}"
+                          x:Name="edit"/>
                 <Separator/>
                 <MenuItem Header="_Fullscreen" Icon="{fa:Icon expand}"
                           Command="{Binding MenubarViewModel.GoFullScreenCommand}"/>

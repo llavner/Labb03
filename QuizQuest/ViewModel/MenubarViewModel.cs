@@ -22,11 +22,31 @@ namespace QuizQuest.ViewModel
             ExitProgramCommand = new DelegateCommand(ExitProgram);
             GoFullScreenCommand = new DelegateCommand(GoFullScreen);
 
-            ShowEditCommand = new DelegateCommand(Edit);
-            ShowPlayCommand = new DelegateCommand(Play);
+            ShowEditCommand = new DelegateCommand(Edit, CanEdit);
+            ShowPlayCommand = new DelegateCommand(Play, CanPlay);
 
         }
 
+        private bool CanEdit(object obj)
+        {
+            if (mainWindowViewModel?.EditVisibility == Visibility.Visible && mainWindowViewModel?.PlayVisibility == Visibility.Collapsed)
+            {
+                return false;
+
+            }
+            else return true;
+
+        }
+
+        private bool CanPlay(object obj)
+        {
+            if (mainWindowViewModel?.PlayVisibility == Visibility.Visible && mainWindowViewModel?.EditVisibility == Visibility.Collapsed)
+            {
+                return false;
+            }
+            else return true;
+
+        }
         private void Edit(object obj)
         {
             mainWindowViewModel.EditVisibility = Visibility.Visible;
