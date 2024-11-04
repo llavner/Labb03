@@ -47,25 +47,19 @@ namespace QuizQuest.ViewModel
             }
         }
 
-
-
         public MainWindowViewModel()
         {
             Packs = new ObservableCollection<QuestionPackViewModel>();
 
             var newPack = new QuestionPackViewModel(new QuestionPack("Default Pack"));
 
-            Packs.Add(newPack);
+            var newPack2 = new QuestionPackViewModel(new QuestionPack("Movie Pack"));
 
+            Packs.Add(newPack);
+            //Packs.Add(newPack2);
             this.ActivePack = newPack;
 
-            var musicPack = new QuestionPackViewModel(new QuestionPack("Music Pack"));
-            Packs.Add(musicPack);
-
-            musicPack.Questions?.Add(new Question("Who is Iron Maidens vocalist?", "Bruce Dickinson","Blaze Baley", "Paul Di'Anno", "Ozzy Osbourne"));
-
-            this.ActivePack = musicPack;
-
+            
             ConfigurationViewModel = new ConfigurationViewModel(this);
             ImportQuestionViewModel = new ImportQuestionViewModel(this);
             MenubarViewModel = new MenubarViewModel(this);

@@ -20,7 +20,7 @@
 
             <Label Content="New pack" FontSize="20" HorizontalAlignment="Center"/>
             <Label Content="Pack Name:"/>
-            <TextBox x:Name="packName" Width="auto" Text="{Binding ConfigurationViewModel.Name}" />
+            <TextBox x:Name="packName" Width="auto" Text="{Binding ConfigurationViewModel.Name}"/>
 
             <Label Content="Difficulty:"/>
             <ComboBox x:Name="difficulty" SelectedIndex="1">
@@ -47,8 +47,8 @@
                     Margin="10">
 
             <Button x:Name="addButton" Content="Add" 
-                    Margin="10" Padding="5" Command="{Binding DataContext.ConfigurationViewModel.PackAddButtonCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}, AncestorLevel=1}}"/>
+                    Margin="10" Padding="5" Command="{Binding ConfigurationViewModel.PackAddButtonCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
             <Button x:Name="cancelButton" Content="Cancel" 
                     Margin="10" Padding="5" Command="{Binding ConfigurationViewModel.PackCancelButtonCommand}"
                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>

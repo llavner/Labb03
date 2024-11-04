@@ -11,9 +11,9 @@
         Title="QuizQuest 1.0" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:MainWindowViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
 
 
     <Grid>

@@ -18,7 +18,7 @@
             </StackPanel.Resources>
             <Label Content="Options" FontSize="20" HorizontalAlignment="Center"/>
             <Label Content="Pack Name:"/>
-            <TextBox x:Name="optionName" Width="auto" Text=""/> 
+            <TextBox x:Name="optionName" Width="auto" Text="{Binding ConfigurationViewModel.Name}"/> 
 
             <Label Content="Difficulty:"/>
             <ComboBox SelectedIndex="1">
@@ -35,14 +35,18 @@
             <Slider x:Name="optionSlider" Maximum="120"
                     TickPlacement="BottomRight" TickFrequency="5"
                     SnapsToDevicePixels="True" IsSnapToTickEnabled="True"
+                    Value="{Binding ConfigurationViewModel.TimeLimit}"
                     />
             <StackPanel Orientation="Horizontal" Margin="10"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
-                <Button x:Name="addButton" Content="Update" 
-                        Margin="10" Padding="5"/>
+                <Button x:Name="updateButton" Content="Update" 
+                        Margin="10" Padding="5" Command="{Binding ConfigurationViewModel.UpdatePackCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
+                
                 <Button x:Name="cancelButton" Content="Cancel" 
-                        Margin="10" Padding="5"/>
+                        Margin="10" Padding="5" Command="{Binding ConfigurationViewModel.PackCancelButtonCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
             </StackPanel>
         </StackPanel>
 

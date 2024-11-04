@@ -11,6 +11,7 @@ namespace QuizQuest
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
 
 

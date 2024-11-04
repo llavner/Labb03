@@ -14,14 +14,14 @@ using System.Windows.Shapes;
 
 namespace QuizQuest.Dialogs
 {
-    /// <summary>
-    /// Interaction logic for PackOptionDialog.xaml
-    /// </summary>
+    
     public partial class PackOptionDialog : Window
     {
         public PackOptionDialog()
         {
             InitializeComponent();
+
+            DataContext = (App.Current.MainWindow as MainWindow).DataContext;
         }
     }
 }

@@ -22,7 +22,21 @@
 
 
                 <MenuItem Header="_Delete Question Pack" Icon="{fa:Icon folderminus}"
-                          Command="{Binding ConfigurationViewModel.PackDeleteCommand}"/>
+                          Command="{Binding ConfigurationViewModel.PackDeleteCommand, UpdateSourceTrigger=PropertyChanged}">
+
+                    <MenuItem.Style>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Packs}" Value="1">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+
+                        </Style>
+
+                    </MenuItem.Style>
+                </MenuItem>
 
                 <Separator/>
 
@@ -37,13 +51,20 @@
 
             </MenuItem>
 
-            <MenuItem Header="Packs" ItemsSource="{Binding Packs}" DisplayMemberPath="Name">
+            <MenuItem Header="Packs">
+                
+                
+                <MenuItem.ItemsSource>
+                    <Binding Path="Packs"/>
+                </MenuItem.ItemsSource>
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="MenuItem">
-                        <Setter Property="Command" Value="{Binding MainWindowViewModel.ActivePack, RelativeSource={RelativeSource AncestorType=Window}}"/>
-                        <Setter Property="CommandParameter" Value="{Binding}"/>
+                        <Setter Property="Header" Value="{Binding Name}" />
+                        <Setter Property="Command" Value="{Binding DataContext.ConfigurationViewModel.SelectPackCommand, RelativeSource={RelativeSource AncestorType=Window}}" />
+                        <Setter Property="CommandParameter" Value="{Binding}" />
                     </Style>
                 </MenuItem.ItemContainerStyle>
+
             </MenuItem>
 
 

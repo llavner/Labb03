@@ -1,6 +1,7 @@
 ﻿using QuizQuest.Command;
 using QuizQuest.Dialogs;
 using QuizQuest.Model;
+using System.Diagnostics;
 using System.Windows;
 
 
@@ -23,6 +24,7 @@ namespace QuizQuest.ViewModel
                 QuestionDeleteCommand.RaisedCanExecuteChanged();
             }
         }
+
         public string Name { get; set; }
         public Difficulty Difficulty { get; set; }
         public int TimeLimit { get; set; }
@@ -36,6 +38,8 @@ namespace QuizQuest.ViewModel
         public DelegateCommand? PackDeleteCommand { get; }
         public DelegateCommand QuestionAddCommand { get; }
         public DelegateCommand QuestionDeleteCommand { get; }
+        public DelegateCommand UpdatePackCommand { get; }
+        public DelegateCommand SelectPackCommand { get; }
 
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
         {
@@ -46,22 +50,37 @@ namespace QuizQuest.ViewModel
             PackDialogOptionCommand = new DelegateCommand(PackDialogOption);
             PackAddButtonCommand = new DelegateCommand(PackAddButton);
             PackCancelButtonCommand = new DelegateCommand(PackCancelButton);
-            PackDeleteCommand = new DelegateCommand(PackDelete, PackCanRemove);
+            PackDeleteCommand = new DelegateCommand(PackDelete, PackCanDelete);
             QuestionAddCommand = new DelegateCommand(QuestionAdd);
-            QuestionDeleteCommand = new DelegateCommand(QuestionDelete, QuestionCanRemove);
-        
+            QuestionDeleteCommand = new DelegateCommand(QuestionDelete, QuestionCanDelete);
+            SelectPackCommand = new DelegateCommand(SelectPack);
+            UpdatePackCommand = new DelegateCommand(UpdatePack);
+        }
+
+        private void SelectPack(object obj)
+        {
+            Debug.WriteLine("sdsdsadasdasdsad");
+            mainWindowViewModel.ActivePack = (QuestionPackViewModel)obj;
+            RaisedPropertyChanged();
+            
+            
+        }
+
+        private void UpdatePack(object obj)
+        {
+            
+
         }
         private void PackDialog(object obj)
         {
             CreateNewPackDialog createNewPackDialog = new();
-
             var result = createNewPackDialog.ShowDialog();
         }
         private void PackAddButton(object obj)
         {
-            var newPack = new QuestionPackViewModel(new QuestionPack("New Pack"));
-            mainWindowViewModel.Packs.Add(newPack);
+            var newPack = new QuestionPackViewModel(new QuestionPack(Name, Difficulty, TimeLimit));
 
+            mainWindowViewModel.Packs.Add(newPack);
             mainWindowViewModel.ActivePack = newPack;
             
             if (obj is Window window) 
@@ -82,6 +101,8 @@ namespace QuizQuest.ViewModel
         }
         private void PackDelete(object obj)
         {
+
+            Debug.WriteLine(mainWindowViewModel.Packs.Count.ToString());
             if (mainWindowViewModel.Packs.Count == 1)
             {
                 return;
@@ -90,13 +111,18 @@ namespace QuizQuest.ViewModel
             mainWindowViewModel.Packs.Remove(ActivePack);
             mainWindowViewModel.ActivePack = mainWindowViewModel.Packs.FirstOrDefault();
 
+            
+
         }
-        private bool PackCanRemove(object obj)
+        private bool PackCanDelete(object obj)
         {
-            if (mainWindowViewModel.Packs.Count == 1)
-                return false;
-            else
+            Debug.WriteLine("gfgfgfg");
+            if (mainWindowViewModel.Packs.Count != 0)
+            {
                 return true;
+            }
+            else
+                return false;
 
         }
         private void QuestionAdd(object obj)
@@ -116,7 +142,7 @@ namespace QuizQuest.ViewModel
             ActivePack?.Questions.Remove(ActiveQuestion);
             ActiveQuestion = ActivePack.Questions.FirstOrDefault();
         }
-        private bool QuestionCanRemove(object obj)
+        private bool QuestionCanDelete(object obj)
         {
             if (ActivePack?.Questions != null && ActiveQuestion != null)
                 return true;

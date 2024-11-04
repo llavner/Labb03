@@ -22,8 +22,8 @@ namespace QuizQuest.ViewModel
             ExitProgramCommand = new DelegateCommand(ExitProgram);
             GoFullScreenCommand = new DelegateCommand(GoFullScreen);
 
-            ShowEditCommand = new DelegateCommand(Edit, CanEdit);
-            ShowPlayCommand = new DelegateCommand(Play, CanPlay);
+            ShowEditCommand = new DelegateCommand(Edit);
+            ShowPlayCommand = new DelegateCommand(Play);
 
         }
 
@@ -40,7 +40,7 @@ namespace QuizQuest.ViewModel
 
         private bool CanPlay(object obj)
         {
-            if (mainWindowViewModel?.PlayVisibility == Visibility.Visible && mainWindowViewModel?.EditVisibility == Visibility.Collapsed)
+            if (mainWindowViewModel?.PlayVisibility == Visibility.Collapsed && mainWindowViewModel?.EditVisibility == Visibility.Visible)
             {
                 return false;
             }
