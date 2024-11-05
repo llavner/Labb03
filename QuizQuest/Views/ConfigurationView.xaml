@@ -54,6 +54,25 @@
 
 
             </Button>
+            
+            <Button x:Name="delPack"
+        Margin="1"
+        Content="{fa:Icon minus}"
+        Command="{Binding ConfigurationViewModel.PackDeleteCommand}">
+
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Packs.Count}" Value="0">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+
+            </Button>
 
         </StackPanel>
 

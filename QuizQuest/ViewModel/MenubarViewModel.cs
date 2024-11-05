@@ -49,15 +49,16 @@ namespace QuizQuest.ViewModel
         }
         private void Edit(object obj)
         {
+            
             mainWindowViewModel.EditVisibility = Visibility.Visible;
             mainWindowViewModel.PlayVisibility = Visibility.Collapsed;
         }
 
         private void Play(object obj)
         {
-            //mainWindowViewModel.PlayerViewModel = new PlayerViewModel(mainWindowViewModel); //Måste startas i mainwindowviewmodel?
-
+            
             mainWindowViewModel.PlayerViewModel.Timer();
+
 
             mainWindowViewModel.PlayVisibility = Visibility.Visible;
             mainWindowViewModel.EditVisibility = Visibility.Collapsed;

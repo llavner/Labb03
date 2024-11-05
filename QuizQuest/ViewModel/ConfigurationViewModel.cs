@@ -59,7 +59,7 @@ namespace QuizQuest.ViewModel
 
         private void SelectPack(object obj)
         {
-            mainWindowViewModel.ActivePack = (QuestionPackViewModel)obj;
+           mainWindowViewModel.ActivePack = (QuestionPackViewModel)obj;
             RaisedPropertyChanged();
         }
 
@@ -124,7 +124,7 @@ namespace QuizQuest.ViewModel
         }
         private bool PackCanDelete(object obj)
         {
-            if (mainWindowViewModel?.Packs?.Count < 1)
+            if (mainWindowViewModel?.Packs?.Count !< 1)
             {
                 return false;
             }

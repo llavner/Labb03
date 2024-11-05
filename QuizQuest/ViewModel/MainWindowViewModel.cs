@@ -67,6 +67,7 @@ namespace QuizQuest.ViewModel
             ActivePack.Questions.Add(new Question("Who is the main female star in The Bodyguard?", "Whitney Houston", "Reese Witherspoon", "Salma Hyak", "Goldie Hawn"));
             ActivePack.Questions.Add(new Question("How much did Waterworld cost to make? (in millions)", "175", "75", "210", "110"));
 
+            
             ConfigurationViewModel = new ConfigurationViewModel(this);
             ImportQuestionViewModel = new ImportQuestionViewModel(this);
             MenubarViewModel = new MenubarViewModel(this);

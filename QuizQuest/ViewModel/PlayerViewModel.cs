@@ -11,12 +11,20 @@ namespace QuizQuest.ViewModel
     {
         private readonly MainWindowViewModel? mainWindowViewModel;
 
-        //public QuestionPackViewModel? ActivePack => mainWindowViewModel?.ActivePack; //Exists in Configurationview Model
-
         private DispatcherTimer timer;
 
-        private QuestionPackViewModel _activePack;
+        private string _packName;
+        private Difficulty _difficulty;
+        private int _timeLimit;
+        private int _questionsInPack;
 
+        private string _question;
+        private string _answer1;
+        private string _answer2;
+        private string _answer3;
+        private string _answer4;
+        
+        //private QuestionPackViewModel _activePack;
         /*public QuestionPackViewModel ActivePack
         {
             get => mainWindowViewModel.ActivePack;
@@ -29,14 +37,12 @@ namespace QuizQuest.ViewModel
             }
         }*/
 
-        private string _packName;
         public string PackName
         {
             get { return _packName; }
             set { _packName = value; }
         }
 
-        private string _question;
         public string Question
         {
             get { return _question; }
@@ -47,35 +53,30 @@ namespace QuizQuest.ViewModel
             }
         }
 
-        private string _answer1;
         public string Answer1
         {
             get { return _answer1; }
             set { _answer1 = value; }
         }
 
-        private string _answer2;
         public string Answer2
         {
             get { return _answer2; }
             set { _answer2 = value; }
         }
 
-        private string _answer3;
         public string Answer3
         {
             get { return _answer3; }
             set { _answer3 = value; }
         }
 
-        private string _answer4;
         public string Answer4
         {
             get { return _answer4; }
             set { _answer4 = value; }
         }
 
-        private int _timeLimit;
 
         public int TimeLimit
         {
@@ -87,7 +88,6 @@ namespace QuizQuest.ViewModel
             }
         }
 
-        private Difficulty _difficulty;
 
         public Difficulty Difficulty
         {
@@ -95,15 +95,14 @@ namespace QuizQuest.ViewModel
             set { _difficulty = value; }
         }
 
-        private string _currentQuestion;
+        //private string _currentQuestion;
 
-        public string CurrentQuestion
-        {
-            get { return _currentQuestion; }
-            set { _currentQuestion = value; }
-        }
+        //public string CurrentQuestion
+        //{
+        //    get { return _currentQuestion; }
+        //    set { _currentQuestion = value; }
+        //}
 
-        private int _questionsInPack;
 
         public int QuestionsInPack
         {
@@ -121,44 +120,42 @@ namespace QuizQuest.ViewModel
             this.mainWindowViewModel = mainWindowViewModel;
 
             
-            newmetod();
-            ////Packname
-            PackName = mainWindowViewModel.ActivePack.Name;  // denna 
-
-            ////Question-amount
-            //QuestionsInPack = ActivePack.Questions.Count;
-
-            ////Difficulty
-            //Difficulty = ActivePack.Difficulty;
-
-            //// Timer - Startar när appen startar!
-            //TimeLimit = ActivePack.TimeLimit;
+            TestMetod();
+            
 
             // Question-Strings
             Question = mainWindowViewModel.ActivePack.Questions[selectedQuestion].Query;
-            //Answer1 = ActivePack.Questions[selectedQuestion].CorrectAnswer;
-            //Answer2 = ActivePack.Questions[selectedQuestion].IncorrectAnswers[0];
-            //Answer3 = ActivePack.Questions[selectedQuestion].IncorrectAnswers[1];
-            //Answer4 = ActivePack.Questions[selectedQuestion].IncorrectAnswers[2];
+            Answer1 = mainWindowViewModel.ActivePack.Questions[selectedQuestion].CorrectAnswer;
+            Answer2 = mainWindowViewModel.ActivePack.Questions[selectedQuestion].IncorrectAnswers[0];
+            Answer3 = mainWindowViewModel.ActivePack.Questions[selectedQuestion].IncorrectAnswers[1];
+            Answer4 = mainWindowViewModel.ActivePack.Questions[selectedQuestion].IncorrectAnswers[2];
 
 
         }
 
-        public void newmetod()
+        public void TestMetod()
         {
 
 
             //Packname
-            PackName = mainWindowViewModel.ActivePack.Name;  // denna 
+            PackName = mainWindowViewModel.ActivePack.Name;
 
             //Question-amount
             QuestionsInPack = mainWindowViewModel.ActivePack.Questions.Count;
 
+            
             //Difficulty
             Difficulty = mainWindowViewModel.ActivePack.Difficulty;
-            // Timer - Startar när appen startar!
+            
             //TimeLimit = ActivePack.TimeLimit;
             TimeLimit = 5;
+        }
+
+        private void Next()
+        {
+            // Test för att se om den byter
+            mainWindowViewModel.ActivePack = mainWindowViewModel.Packs[0];
+
         }
         public void Timer()
         {
@@ -177,10 +174,11 @@ namespace QuizQuest.ViewModel
 
             if (TimeLimit < 1)
             {
-                mainWindowViewModel.ActivePack = mainWindowViewModel.Packs[0];
-
+                
                 Debug.WriteLine("Next Question or Game Over");
                 timer.Stop();
+
+                Next();
             
             }
         }
