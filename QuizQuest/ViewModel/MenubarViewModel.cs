@@ -7,7 +7,7 @@ namespace QuizQuest.ViewModel
 {
     internal class MenubarViewModel : ViewModelBase
     {
-        private readonly MainWindowViewModel? mainWindowViewModel;
+        public MainWindowViewModel mainWindowViewModel { get; set; }
         public DelegateCommand ExitProgramCommand { get; }
         public DelegateCommand GoFullScreenCommand { get; }
         public DelegateCommand DeletePackCommand { get; }
@@ -55,9 +55,13 @@ namespace QuizQuest.ViewModel
 
         private void Play(object obj)
         {
+            //mainWindowViewModel.PlayerViewModel = new PlayerViewModel(mainWindowViewModel); //Måste startas i mainwindowviewmodel?
+
+            mainWindowViewModel.PlayerViewModel.Timer();
 
             mainWindowViewModel.PlayVisibility = Visibility.Visible;
             mainWindowViewModel.EditVisibility = Visibility.Collapsed;
+
 
         }
 

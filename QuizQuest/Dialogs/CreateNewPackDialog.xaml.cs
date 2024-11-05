@@ -12,7 +12,7 @@ namespace QuizQuest.Dialogs
         {
             InitializeComponent();
 
-            DataContext = (App.Current.MainWindow as MainWindow).DataContext; //Vid New Window, skapa en referens till Window i codebehind.
+            DataContext = (App.Current.MainWindow as MainWindow).DataContext;
         }
     }
 }

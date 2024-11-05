@@ -29,7 +29,7 @@ namespace QuizQuest.ViewModel
         public Difficulty Difficulty { get; set; }
         public int TimeLimit { get; set; }
 
-        
+
         public DelegateCommand? PackDialogCommand { get; }
         public DelegateCommand? PackDialogOptionCommand { get; }
         public DelegateCommand? PackAddButtonCommand { get; }
@@ -59,16 +59,13 @@ namespace QuizQuest.ViewModel
 
         private void SelectPack(object obj)
         {
-            Debug.WriteLine("sdsdsadasdasdsad");
             mainWindowViewModel.ActivePack = (QuestionPackViewModel)obj;
             RaisedPropertyChanged();
-            
-            
         }
 
         private void UpdatePack(object obj)
         {
-            
+
 
         }
         private void PackDialog(object obj)
@@ -82,8 +79,8 @@ namespace QuizQuest.ViewModel
 
             mainWindowViewModel.Packs.Add(newPack);
             mainWindowViewModel.ActivePack = newPack;
-            
-            if (obj is Window window) 
+
+            if (obj is Window window)
                 window.Close();
 
         }
@@ -101,36 +98,54 @@ namespace QuizQuest.ViewModel
         }
         private void PackDelete(object obj)
         {
+            
+            
 
-            Debug.WriteLine(mainWindowViewModel.Packs.Count.ToString());
-            if (mainWindowViewModel.Packs.Count == 1)
+            if (mainWindowViewModel.Packs.Count < 1)
             {
+                MessageBox.Show("No Pack found.", "Attention!", MessageBoxButton.OK);
                 return;
 
             }
-            mainWindowViewModel.Packs.Remove(ActivePack);
-            mainWindowViewModel.ActivePack = mainWindowViewModel.Packs.FirstOrDefault();
 
-            
+            var result = MessageBox.Show("Delete Pack?", "Delete", MessageBoxButton.YesNo);
+
+            if (result == MessageBoxResult.Yes)
+            {
+
+                mainWindowViewModel.Packs.Remove(ActivePack);
+                mainWindowViewModel.ActivePack = mainWindowViewModel.Packs.FirstOrDefault();
+
+            }
+            else { return; }
+
+
 
         }
         private bool PackCanDelete(object obj)
         {
-            Debug.WriteLine("gfgfgfg");
-            if (mainWindowViewModel.Packs.Count != 0)
+            if (mainWindowViewModel?.Packs?.Count < 1)
             {
-                return true;
+                return false;
             }
             else
-                return false;
+                return true;
 
         }
         private void QuestionAdd(object obj)
         {
+            if (mainWindowViewModel.Packs.Count > 0)
+            {
 
             ActivePack?.Questions.Add(new Question("New Question", "", "", "", ""));
-
             ActiveQuestion = ActivePack.Questions.Last();
+
+            }
+            else
+            {
+                var result = MessageBox.Show("Please be sure to add a Pack first.", "Attention!", MessageBoxButton.OK);
+            }
+
         }
         private void QuestionDelete(object obj)
         {

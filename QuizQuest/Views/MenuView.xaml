@@ -9,9 +9,6 @@
              mc:Ignorable="d"
              d:DesignHeight="50" d:DesignWidth="500">
 
-    <!--<UserControl.DataContext>
-    <vm:MainWindowViewModel/>
-    </UserControl.DataContext>-->
     <Grid>
         <Menu Width="auto">
 
@@ -20,22 +17,23 @@
                 <MenuItem Header="_New Question Pack" Icon="{fa:Icon folderplus}"
                           Command="{Binding ConfigurationViewModel.PackDialogCommand}"/>
 
+                
 
                 <MenuItem Header="_Delete Question Pack" Icon="{fa:Icon folderminus}"
                           Command="{Binding ConfigurationViewModel.PackDeleteCommand, UpdateSourceTrigger=PropertyChanged}">
 
-                    <MenuItem.Style>
+                    <!--<MenuItem.Style>
                         <Style TargetType="MenuItem">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="IsEnabled" Value="False"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding Packs}" Value="1">
-                                    <Setter Property="IsEnabled" Value="False"/>
+                                <DataTrigger Binding="{Binding Packs.Count}" Value="0">
+                                    <Setter Property="IsEnabled" Value="True"/>
                                 </DataTrigger>
                             </Style.Triggers>
 
                         </Style>
+                    </MenuItem.Style>-->
 
-                    </MenuItem.Style>
                 </MenuItem>
 
                 <Separator/>

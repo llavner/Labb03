@@ -63,7 +63,8 @@
             <ListBox x:Name="questionContent" Height="auto"
                      Padding="2"
                      ItemsSource="{Binding ActivePack.Questions}"
-                     SelectedItem="{Binding ConfigurationViewModel.ActiveQuestion}">
+                     SelectedItem="{Binding ConfigurationViewModel.ActiveQuestion}"
+                     >
 
                 <ListBox.ItemTemplate>
                     <DataTemplate>
