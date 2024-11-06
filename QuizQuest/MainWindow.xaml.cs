@@ -1,4 +1,4 @@
-﻿using QuizQuest.Command;
+﻿using QuizQuest.Assets.Command;
 using QuizQuest.Model;
 using QuizQuest.ViewModel;
 using System.Windows;

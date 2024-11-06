@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace QuizQuest.Command
+namespace QuizQuest.Assets.Command
 {
     internal class DelegateCommand : ICommand
     {

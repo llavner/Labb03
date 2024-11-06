@@ -18,7 +18,7 @@
             </StackPanel.Resources>
             <Label Content="Options" FontSize="20" HorizontalAlignment="Center"/>
             <Label Content="Pack Name:"/>
-            <TextBox x:Name="optionName" Width="auto" Text="{Binding ConfigurationViewModel.Name}"/> 
+            <TextBox x:Name="optionName" Width="auto" Text="{Binding ActivePack.Name}"/> 
 
             <Label Content="Difficulty:"/>
             <ComboBox SelectedIndex="1">
@@ -35,7 +35,7 @@
             <Slider x:Name="optionSlider" Maximum="120"
                     TickPlacement="BottomRight" TickFrequency="5"
                     SnapsToDevicePixels="True" IsSnapToTickEnabled="True"
-                    Value="{Binding ConfigurationViewModel.TimeLimit}"
+                    Value="{Binding ActivePack.TimeLimit}"
                     />
             <StackPanel Orientation="Horizontal" Margin="10"
                         VerticalAlignment="Center"

@@ -1,4 +1,4 @@
-﻿using QuizQuest.Command;
+﻿using QuizQuest.Assets.Command;
 using QuizQuest.Views;
 using System.Windows;
 
@@ -18,52 +18,35 @@ namespace QuizQuest.ViewModel
 
             this.mainWindowViewModel = mainWindowViewModel;
 
+            var mainWindow = Application.Current.MainWindow;
 
             ExitProgramCommand = new DelegateCommand(ExitProgram);
             GoFullScreenCommand = new DelegateCommand(GoFullScreen);
 
-            ShowEditCommand = new DelegateCommand(Edit);
-            ShowPlayCommand = new DelegateCommand(Play);
+            ShowEditCommand = new DelegateCommand(Edit, CanEdit);
+            ShowPlayCommand = new DelegateCommand(Play, CanPlay);
 
         }
 
-        private bool CanEdit(object obj)
-        {
-            if (mainWindowViewModel?.EditVisibility == Visibility.Visible && mainWindowViewModel?.PlayVisibility == Visibility.Collapsed)
-            {
-                return false;
-
-            }
-            else return true;
-
-        }
-
-        private bool CanPlay(object obj)
-        {
-            if (mainWindowViewModel?.PlayVisibility == Visibility.Collapsed && mainWindowViewModel?.EditVisibility == Visibility.Visible)
-            {
-                return false;
-            }
-            else return true;
-
-        }
+        private bool CanEdit(object obj) => mainWindowViewModel?.EditVisibility != Visibility.Visible;
+        private bool CanPlay(object obj) => mainWindowViewModel?.PlayVisibility != Visibility.Visible;
         private void Edit(object obj)
         {
             
             mainWindowViewModel.EditVisibility = Visibility.Visible;
             mainWindowViewModel.PlayVisibility = Visibility.Collapsed;
+            ShowEditCommand.RaisedCanExecuteChanged();
+
         }
 
         private void Play(object obj)
         {
-            
             mainWindowViewModel.PlayerViewModel.Timer();
-
-
             mainWindowViewModel.PlayVisibility = Visibility.Visible;
             mainWindowViewModel.EditVisibility = Visibility.Collapsed;
+            ShowPlayCommand.RaisedCanExecuteChanged();
 
-
+            //PlayerViewModel.Play();
         }
 
         private void ExitProgram(object obj) //Lägg till Save to file?
@@ -93,5 +76,15 @@ namespace QuizQuest.ViewModel
                 }
             }
         }
+
+        //private bool CanGoFullScreen(object obj)
+        //{
+        //     var mainWindow = Application.Current.MainWindow;
+
+        //    if (mainWindow.WindowState == WindowState.Maximized)
+        //        return false;
+        //    else
+        //        return true;
+        //}
     }
 }

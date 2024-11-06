@@ -17,20 +17,20 @@
         </Grid.RowDefinitions>
 
 
-        <Label x:Name="counter" Content="{Binding PlayerViewModel.TimeLimit}" Margin="10" FontSize="30"
+        <Label x:Name="counter" Content="{Binding ActivePack.TimeLimit}" Margin="10" FontSize="30"
                VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center"
                     HorizontalAlignment="Center">
 
-            <TextBlock Text="{Binding PlayerViewModel.Question}"
+            <TextBlock Text="{Binding ConfigurationViewModel.ActiveQuestion.Query, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                        FontSize="20"/>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <TextBlock Text="Question "/>
-                <TextBlock Text="{Binding PlayerViewModel.QuestionsInPack}"/>
+                <TextBlock Text="{Binding ActivePack.Questions.Count}"/>
                 <TextBlock Text=" of "/>
-                <TextBlock Text="{Binding PlayerViewModel.QuestionsInPack}"/>
+                <TextBlock Text="{Binding ActivePack.Questions.Count}"/>
             </StackPanel>
 
         </StackPanel>
@@ -47,21 +47,21 @@
             </WrapPanel.Resources>
 
             <StackPanel>
-                <Button x:Name="answerButton1" Content="{Binding PlayerViewModel.Answer1}" Margin="5"/>
-                <Button x:Name="answerButton2" Content="{Binding PlayerViewModel.Answer2}" Margin="5"/>
+                <Button x:Name="answerButton1" Content="{Binding ConfigurationViewModel.ActiveQuestion.CorrectAnswer, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Margin="5"/>
+                <Button x:Name="answerButton2" Content="{Binding ConfigurationViewModel.ActiveQuestion.IncorrectAnswers[0], UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Margin="5"/>
             </StackPanel>
             <StackPanel>
-                <Button x:Name="answerButton3" Content="{Binding PlayerViewModel.Answer3}" Margin="5"/>
-                <Button x:Name="answerButton4" Content="{Binding PlayerViewModel.Answer4}" Margin="5"/>
+                <Button x:Name="answerButton3" Content="{Binding ConfigurationViewModel.ActiveQuestion.IncorrectAnswers[1], UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Margin="5"/>
+                <Button x:Name="answerButton4" Content="{Binding ConfigurationViewModel.ActiveQuestion.IncorrectAnswers[2], UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" Margin="5"/>
             </StackPanel>
 
         </WrapPanel>
 
         <StackPanel Grid.Row="3" Margin="10">
-            <Label x:Name="packName" Content="{Binding PlayerViewModel.PackName}" FontSize="12"
+            <Label x:Name="packName" Content="{Binding ActivePack.Name}" FontSize="12"
                    VerticalAlignment="Center" HorizontalAlignment="Left"/>
 
-            <Label x:Name="difficulty" Content="{Binding PlayerViewModel.Difficulty}" FontSize="12"
+            <Label x:Name="difficulty" Content="{Binding ActivePack.Difficulty}" FontSize="12"
                    VerticalAlignment="Center" HorizontalAlignment="Left"/>
         </StackPanel>
 

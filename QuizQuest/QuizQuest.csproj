@@ -17,7 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\qq.ico" />
+    <Resource Include="Assets\Pictures\qq.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Converters\" />
   </ItemGroup>
 
 </Project>

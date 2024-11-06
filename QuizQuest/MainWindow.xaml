@@ -7,10 +7,21 @@
         xmlns:vm="clr-namespace:QuizQuest.ViewModel"
         mc:Ignorable="d"
         MinHeight="400" MinWidth="700"
-        Icon="pack://application:,,,/Assets/qq.ico"
+        Icon="pack://application:,,,/Assets/Pictures/qq.ico"
         Title="QuizQuest 1.0" Height="450" Width="800"
         WindowStartupLocation="CenterScreen">
-       
+
+    <Window.InputBindings>
+        <KeyBinding Key="I" Modifiers="Control" Command="{Binding ImportQuestionViewModel.ImportDialogCommand}" />
+        <KeyBinding Key="X" Modifiers="Control" Command="{Binding MenubarViewModel.ExitProgramCommand}" />
+        <KeyBinding Key="Insert" Command="{Binding ConfigurationViewModel.QuestionAddCommand}" />
+        <KeyBinding Key="Delete" Command="{Binding ConfigurationViewModel.QuestionDeleteCommand}" />
+        <KeyBinding Key="O" Modifiers="Control" Command="{Binding ConfigurationViewModel.PackDialogOptionCommand}" />
+        <KeyBinding Key="P" Modifiers="Control" Command="{Binding MenubarViewModel.ShowPlayCommand}" />
+        <KeyBinding Key="E" Modifiers="Control" Command="{Binding MenubarViewModel.ShowEditCommand}" />
+        <KeyBinding Key="Enter" Modifiers="Alt" Command="{Binding MenubarViewModel.GoFullScreenCommand}"/>
+    </Window.InputBindings>
+
     <Grid>
 
 

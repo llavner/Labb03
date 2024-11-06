@@ -119,12 +119,12 @@
             <Label Content="Question:" FontWeight="Bold"/>
             <TextBox x:Name="newQuestion"
                      Height="80" Padding="2"
-                     Text="{Binding ConfigurationViewModel.ActiveQuestion.Query, UpdateSourceTrigger=PropertyChanged}"/>
+                     Text="{Binding ConfigurationViewModel.ActiveQuestion.Query, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
 
             <Label Content="Correct Answer:" FontWeight="Bold"/>
             <TextBox x:Name="correctAnswer"
                      Padding="2"
-                     Text="{Binding ConfigurationViewModel.ActiveQuestion.CorrectAnswer}"/>
+                     Text="{Binding ConfigurationViewModel.ActiveQuestion.CorrectAnswer, Mode=TwoWay}"/>
 
 
             <Label Content="First Incorrect Answer:" FontWeight="Bold"/>
