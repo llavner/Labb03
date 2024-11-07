@@ -20,7 +20,7 @@ namespace QuizQuest.ViewModel
             set
             {
                 _activeQuestion = value;
-                RaisedPropertyChanged(nameof(ActiveQuestion)); //undersök så alla har.
+                RaisedPropertyChanged(nameof(ActiveQuestion));
                 QuestionDeleteCommand.RaisedCanExecuteChanged();
             }
         }
@@ -59,11 +59,12 @@ namespace QuizQuest.ViewModel
 
         }
 
-        private bool CanSelectPack(object obj) => mainWindowViewModel.ActivePack.Questions.Count != 0;
+        private bool CanSelectPack(object obj) => mainWindowViewModel.Packs.Count != 0;
         private void SelectPack(object obj)
         {
             mainWindowViewModel.ActivePack = (QuestionPackViewModel)obj;
             SelectPackCommand.RaisedCanExecuteChanged();
+            
         }
 
         private void UpdatePack(object obj)
@@ -82,6 +83,9 @@ namespace QuizQuest.ViewModel
 
             mainWindowViewModel.Packs.Add(newPack);
             mainWindowViewModel.ActivePack = newPack;
+
+            PackAddButtonCommand.RaisedCanExecuteChanged();
+            PackDeleteCommand.RaisedCanExecuteChanged();
 
             if (obj is Window window)
                 window.Close();
@@ -115,14 +119,17 @@ namespace QuizQuest.ViewModel
 
                 mainWindowViewModel.Packs.Remove(ActivePack);
                 mainWindowViewModel.ActivePack = mainWindowViewModel.Packs.FirstOrDefault();
-
+                PackDeleteCommand.RaisedCanExecuteChanged();
             }
-            else { return; }
-
-            PackDeleteCommand.RaisedCanExecuteChanged();
+            else 
+            { 
+                return; 
+            
+            }
 
         }
-        private bool PackCanDelete(object obj) => mainWindowViewModel?.Packs?.Count != 1;
+            
+        private bool PackCanDelete(object obj) => mainWindowViewModel?.Packs?.Count != 0;
         private void QuestionAdd(object obj)
         {
             if (mainWindowViewModel.Packs.Count > 0)

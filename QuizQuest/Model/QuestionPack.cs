@@ -17,7 +17,7 @@ namespace QuizQuest.Model
         public int TimeLimit { get; set; }
         public List<Question> Questions { get; set; }
 
-        public QuestionPack(string name, Difficulty difficulty = Difficulty.Medium, int timeLimit = 30)
+        public QuestionPack(string name, Difficulty difficulty = Difficulty.Medium, int timeLimit = 5)
         {
             Name = name;
             Difficulty = difficulty;

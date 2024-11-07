@@ -55,7 +55,7 @@
 
             </Button>
             
-            <Button x:Name="delPack"
+            <!--<Button x:Name="delPack"
         Margin="1"
         Content="{fa:Icon minus}"
         Command="{Binding ConfigurationViewModel.PackDeleteCommand}">
@@ -72,7 +72,7 @@
                 </Button.Style>
 
 
-            </Button>
+            </Button>-->
 
         </StackPanel>
 

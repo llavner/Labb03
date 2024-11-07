@@ -7,9 +7,11 @@
         xmlns:vm="clr-namespace:QuizQuest.ViewModel"
         mc:Ignorable="d"
         MinHeight="400" MinWidth="700"
-        Icon="pack://application:,,,/Assets/Pictures/qq.ico"
         Title="QuizQuest 1.0" Height="450" Width="800"
+        Icon="/qq.ico"
         WindowStartupLocation="CenterScreen">
+
+    
 
     <Window.InputBindings>
         <KeyBinding Key="I" Modifiers="Control" Command="{Binding ImportQuestionViewModel.ImportDialogCommand}" />
@@ -25,7 +27,9 @@
     <Grid>
 
 
-        <local:MenuView Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"/>
+        <local:MenuView Grid.Column="0" Grid.Row="0" 
+                        Grid.ColumnSpan="2" x:Name="menuBar"
+                        Visibility="{Binding MenuVisibility}"/>
 
 
         <local:ConfigurationView Grid.Column="0" Grid.Row="1" 
@@ -36,6 +40,10 @@
                           Grid.ColumnSpan="2"
                           Grid.RowSpan="2" Visibility="{Binding PlayVisibility}"
                           x:Name="playerView"/>
+
+        <local:GameOver Grid.Column="0" Grid.Row="0"
+                        Grid.ColumnSpan="2" Grid.RowSpan="2" 
+                        Visibility="{Binding GameOverVisibility}"/>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

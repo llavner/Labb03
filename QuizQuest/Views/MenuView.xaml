@@ -22,18 +22,6 @@
                 <MenuItem Header="_Delete Question Pack" Icon="{fa:Icon folderminus}"
                           Command="{Binding ConfigurationViewModel.PackDeleteCommand}">
 
-                    <!--<MenuItem.Style>
-                        <Style TargetType="MenuItem">
-                            <Setter Property="IsEnabled" Value="False"/>
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Packs.Count}" Value="0">
-                                    <Setter Property="IsEnabled" Value="True"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-
-                        </Style>
-                    </MenuItem.Style>-->
-
                 </MenuItem>
 
                 <Separator/>
@@ -57,10 +45,11 @@
                 <MenuItem.ItemsSource>
                     <Binding Path="Packs"/>
                 </MenuItem.ItemsSource>
+                
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="MenuItem">
                         <Setter Property="Header" Value="{Binding Name}" />
-                        <Setter Property="Command" Value="{Binding DataContext.ConfigurationViewModel.SelectPackCommand, RelativeSource={RelativeSource AncestorType=Window}}" />
+                        <Setter Property="Command" Value="{Binding DataContext.ConfigurationViewModel.SelectPackCommand, RelativeSource={RelativeSource AncestorType=Window}, Mode=OneWay}" />
                         <Setter Property="CommandParameter" Value="{Binding}"/>
                     </Style>
                 </MenuItem.ItemContainerStyle>

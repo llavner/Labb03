@@ -10,14 +10,13 @@ namespace QuizQuest.ViewModel
         public MainWindowViewModel mainWindowViewModel { get; set; }
         public DelegateCommand ExitProgramCommand { get; }
         public DelegateCommand GoFullScreenCommand { get; }
-        public DelegateCommand DeletePackCommand { get; }
         public DelegateCommand ShowEditCommand { get; }
         public DelegateCommand ShowPlayCommand { get; }
         public MenubarViewModel(MainWindowViewModel mainWindowViewModel)
         {
 
             this.mainWindowViewModel = mainWindowViewModel;
-
+            
             var mainWindow = Application.Current.MainWindow;
 
             ExitProgramCommand = new DelegateCommand(ExitProgram);
@@ -32,21 +31,34 @@ namespace QuizQuest.ViewModel
         private bool CanPlay(object obj) => mainWindowViewModel?.PlayVisibility != Visibility.Visible;
         private void Edit(object obj)
         {
-            
+            mainWindowViewModel.PlayerViewModel.ResetTimer();
+
+            //mainWindowViewModel.MenuVisibility = Visibility.Visible;
             mainWindowViewModel.EditVisibility = Visibility.Visible;
             mainWindowViewModel.PlayVisibility = Visibility.Collapsed;
+            mainWindowViewModel.GameOverVisibility = Visibility.Collapsed;
             ShowEditCommand.RaisedCanExecuteChanged();
-
+            ShowPlayCommand.RaisedCanExecuteChanged();
         }
 
         private void Play(object obj)
         {
-            mainWindowViewModel.PlayerViewModel.Timer();
+            if (mainWindowViewModel.ActivePack.Questions.Count == 0)
+            {
+                MessageBox.Show("No questions in pack", "Attention!", MessageBoxButton.OK);
+                return;
+            }
+            
             mainWindowViewModel.PlayVisibility = Visibility.Visible;
+            //mainWindowViewModel.MenuVisibility = Visibility.Hidden;
             mainWindowViewModel.EditVisibility = Visibility.Collapsed;
+            mainWindowViewModel.GameOverVisibility = Visibility.Collapsed;
             ShowPlayCommand.RaisedCanExecuteChanged();
+            ShowEditCommand.RaisedCanExecuteChanged();
+            
 
-            //PlayerViewModel.Play();
+            mainWindowViewModel.PlayerViewModel.StartQuiz();
+
         }
 
         private void ExitProgram(object obj) //Lägg till Save to file?
@@ -77,14 +89,5 @@ namespace QuizQuest.ViewModel
             }
         }
 
-        //private bool CanGoFullScreen(object obj)
-        //{
-        //     var mainWindow = Application.Current.MainWindow;
-
-        //    if (mainWindow.WindowState == WindowState.Maximized)
-        //        return false;
-        //    else
-        //        return true;
-        //}
     }
 }
