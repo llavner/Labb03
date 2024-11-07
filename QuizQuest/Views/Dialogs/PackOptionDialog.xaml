@@ -31,6 +31,7 @@
                 <Label x:Name="optionTimer"
                        Content="{Binding ElementName=optionSlider, Path=Value}"
                        HorizontalAlignment="Right" FontWeight="Light"/>
+                       
             </StackPanel>
             <Slider x:Name="optionSlider" Maximum="120"
                     TickPlacement="BottomRight" TickFrequency="5"
@@ -41,7 +42,7 @@
                         VerticalAlignment="Center"
                         HorizontalAlignment="Center">
                 <Button x:Name="updateButton" Content="Update" 
-                        Margin="10" Padding="5" Command="{Binding ConfigurationViewModel.UpdatePackCommand}"
+                        Margin="10" Padding="5" Command="{Binding ConfigurationViewModel.PackUpdateCommand}"
                         CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"/>
                 
                 <Button x:Name="cancelButton" Content="Cancel" 

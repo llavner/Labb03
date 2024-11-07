@@ -1,5 +1,6 @@
 ﻿using QuizQuest.Assets.Command;
 using QuizQuest.Model;
+using QuizQuest.Views;
 using System.Diagnostics;
 using System.Timers;
 using System.Windows;
@@ -10,13 +11,19 @@ namespace QuizQuest.ViewModel
 {
     internal class PlayerViewModel : ViewModelBase
     {
+
         private readonly MainWindowViewModel? mainWindowViewModel;
-
         private DispatcherTimer timer;
-
+        private string _activeQuestion;
+        private string _answer1;
+        private string _answer2;
+        private string _answer3;
+        private string _answer4;
         private int _currentIndex;
-
         private int _questionsInPack;
+        private int _timeLimit;
+        private int counterStartIndex;
+        private int _playerScore = 0;
 
         private List<string> Answers = new List<string>();
 
@@ -39,9 +46,6 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-
-        private string _activeQuestion;
-
         public string ActiveQuestion
         {
             get { return _activeQuestion; }
@@ -51,9 +55,6 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-
-        private string _answer1;
-
         public string Answer1
         {
             get { return _answer1; }
@@ -63,9 +64,6 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-
-        private string _answer2;
-
         public string Answer2
         {
             get { return _answer2; }
@@ -75,8 +73,6 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-        private string _answer3;
-
         public string Answer3
         {
             get { return _answer3; }
@@ -86,8 +82,6 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-        private string _answer4;
-
         public string Answer4
         {
             get { return _answer4; }
@@ -97,11 +91,6 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-
-        private int _timeLimit;
-
-        private int counterStartIndex;
-
         public int TimeLimit
         {
             get { return _timeLimit; }
@@ -120,9 +109,6 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-
-        private int _playerScore = 0;
-
         public int PlayerScore
         {
             get { return _playerScore; }
@@ -132,11 +118,8 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-
-
         public DelegateCommand ClickCommand { get; }
         public DelegateCommand RetryQuizCommand { get; }
-
         public PlayerViewModel(MainWindowViewModel mainWindowViewModel)
         {
             this.mainWindowViewModel = mainWindowViewModel;
@@ -146,18 +129,19 @@ namespace QuizQuest.ViewModel
             ClickCommand = new DelegateCommand(Click);
             RetryQuizCommand = new DelegateCommand(RetryQuiz);
 
-
-
-
         }
 
-
-        private void Click(object obj)
+        private async void Click(object obj)
         {
 
             if (obj == mainWindowViewModel.ActivePack.Questions[CurrentIndex].CorrectAnswer)
             {
                 PlayerScore++;
+
+            }
+            else
+            {
+
             }
 
             if (CurrentIndex == QuestionsInPack - 1)
@@ -172,7 +156,9 @@ namespace QuizQuest.ViewModel
                 NextQuestion();
             }
 
-            Thread.Sleep(1000);
+            await Task.Delay(1000);
+            //Thread.Sleep(1000);
+
         }
 
         public void RetryQuiz(object obj)
@@ -259,11 +245,11 @@ namespace QuizQuest.ViewModel
             ResetTimer();
 
 
-            
+
         }
 
 
-        
+
 
         private void Timer()
         {

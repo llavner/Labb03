@@ -6,7 +6,15 @@
              xmlns:local="clr-namespace:QuizQuest.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="AliceBlue">
+    <UserControl.Resources>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18" />
+        </Style>
+
+    </UserControl.Resources>
     <Grid>
+
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,7 +23,7 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="150"/>
             <RowDefinition/>
             <RowDefinition Height="100"/>
         </Grid.RowDefinitions>
@@ -23,21 +31,47 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center"
                 Grid.Row="1" Grid.Column="1">
 
-            <TextBlock Text="GAME OVER" FontSize="30"/>
-            
-            
-            
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="You got "/>
+                <TextBlock Text="{Binding PlayerViewModel.PlayerScore}"/>
+                <TextBlock Text=" of "/>
+                <TextBlock Text="{Binding PlayerViewModel.QuestionsInPack}"/>
+                <TextBlock Text=" questions correct. "/>
+                
+                
+
+            </StackPanel>
+
 
         </StackPanel>
 
-        <Button Grid.Column="0" Grid.Row="1" Content="Quit" Background="PaleVioletRed"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <Button Grid.Column="0" Grid.Row="1" Content="Quit" Background="PaleVioletRed" 
                 Command="{Binding MenubarViewModel.ShowEditCommand}"
-                Width="100" Height="100"/>
+                Width="100" Height="100" FontSize="20" FontWeight="Bold"/>
         <Button Grid.Column="2" Grid.Row="1" Content="Retry" Background="LightGreen"
                 Command="{Binding PlayerViewModel.RetryQuizCommand, UpdateSourceTrigger=PropertyChanged}"
-                Width="100" Height="100"/>
+                Width="100" Height="100" FontSize="20" FontWeight="Bold"/>
 
     </Grid>
-    
+
 </UserControl>
     

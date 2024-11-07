@@ -8,6 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="AliceBlue">
 
+   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -47,26 +48,39 @@
             </WrapPanel.Resources>
 
             <StackPanel>
+
+
                 <Button x:Name="Button1" Margin="5"
                         Command="{Binding PlayerViewModel.ClickCommand}"
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
-                        Content="{Binding PlayerViewModel.Answer1, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                        Content="{Binding PlayerViewModel.Answer1, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
 
+                    
+                </Button>
+                
                 <Button x:Name="Button2" Margin="5"
                         Command="{Binding PlayerViewModel.ClickCommand}"
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
-                        Content="{Binding PlayerViewModel.Answer2, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                        Content="{Binding PlayerViewModel.Answer2, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                </Button>
+                
             </StackPanel>
+            
             <StackPanel>
                 <Button x:Name="Button3" Margin="5"
                         Command="{Binding PlayerViewModel.ClickCommand}"
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
-                        Content="{Binding PlayerViewModel.Answer3, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                        Content="{Binding PlayerViewModel.Answer3, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+
+                </Button>
 
                 <Button x:Name="Button4" Margin="5"
                         Command="{Binding PlayerViewModel.ClickCommand}"
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
-                        Content="{Binding PlayerViewModel.Answer4, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                        Content="{Binding PlayerViewModel.Answer4, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                
+                </Button>
+                
             </StackPanel>
 
         </WrapPanel>

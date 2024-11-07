@@ -32,13 +32,14 @@ namespace QuizQuest.ViewModel
 
         public DelegateCommand? PackDialogCommand { get; }
         public DelegateCommand? PackDialogOptionCommand { get; }
+        public DelegateCommand? PackOptionUpDateCommand { get; }
         public DelegateCommand? PackAddButtonCommand { get; }
         public DelegateCommand? PackCancelButtonCommand { get; }
         public DelegateCommand? PackSelectCommand { get; }
         public DelegateCommand? PackDeleteCommand { get; }
+        public DelegateCommand PackUpdateCommand { get; }
         public DelegateCommand QuestionAddCommand { get; }
         public DelegateCommand QuestionDeleteCommand { get; }
-        public DelegateCommand UpdatePackCommand { get; }
         public DelegateCommand SelectPackCommand { get; }
 
         public ConfigurationViewModel(MainWindowViewModel? mainWindowViewModel)
@@ -54,7 +55,8 @@ namespace QuizQuest.ViewModel
             QuestionAddCommand = new DelegateCommand(QuestionAdd);
             QuestionDeleteCommand = new DelegateCommand(QuestionDelete, QuestionCanDelete);
             SelectPackCommand = new DelegateCommand(SelectPack, CanSelectPack);
-            UpdatePackCommand = new DelegateCommand(UpdatePack);
+            PackUpdateCommand = new DelegateCommand(UpdatePack);
+            
 
 
         }
@@ -69,9 +71,15 @@ namespace QuizQuest.ViewModel
 
         private void UpdatePack(object obj)
         {
+            Name = mainWindowViewModel.ActivePack.Name;
+            TimeLimit = mainWindowViewModel.ActivePack.TimeLimit;
+            Difficulty = mainWindowViewModel.ActivePack.Difficulty;
+            PackUpdateCommand.RaisedCanExecuteChanged();
 
-
+            if (obj is Window window)
+                window.Close();
         }
+
         private void PackDialog(object obj)
         {
             CreateNewPackDialog createNewPackDialog = new();
@@ -86,6 +94,7 @@ namespace QuizQuest.ViewModel
 
             PackAddButtonCommand.RaisedCanExecuteChanged();
             PackDeleteCommand.RaisedCanExecuteChanged();
+
 
             if (obj is Window window)
                 window.Close();

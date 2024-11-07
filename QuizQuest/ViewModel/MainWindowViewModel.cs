@@ -71,18 +71,18 @@ namespace QuizQuest.ViewModel
         {
             Packs = new ObservableCollection<QuestionPackViewModel>();
 
-            //var newCarPack = new QuestionPackViewModel(new QuestionPack("Car Pack"));
+            var newCarPack = new QuestionPackViewModel(new QuestionPack("Car Pack"));
             var newMoviePack = new QuestionPackViewModel(new QuestionPack("Movie Pack"));
 
 
-            //Packs.Add(newCarPack);
+            Packs.Add(newCarPack);
             Packs.Add(newMoviePack);
 
             //ActivePack = newCarPack;
             ActivePack = newMoviePack;
 
-            //newCarPack.Questions.Add(new Question("What car is a German car?", "BMW", "Saab", "Dodge", "Volvo"));
-            //newCarPack.Questions.Add(new Question("What car is a Porsche?", "Carrera", "Viper", "Countach", "MC20"));
+            newCarPack.Questions.Add(new Question("What car is a German car?", "BMW", "Saab", "Dodge", "Volvo"));
+            newCarPack.Questions.Add(new Question("What car is a Porsche?", "Carrera", "Viper", "Countach", "MC20"));
 
 
             newMoviePack.Questions.Add(new Question("Who is the main female star in The Bodyguard?", "Whitney Houston", "Reese Witherspoon", "Salma Hayak", "Goldie Hawn"));

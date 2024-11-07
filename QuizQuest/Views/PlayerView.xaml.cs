@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuizQuest.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,10 @@ namespace QuizQuest.Views
         public PlayerView()
         {
             InitializeComponent();
+
+            
         }
+
+        
     }
 }
