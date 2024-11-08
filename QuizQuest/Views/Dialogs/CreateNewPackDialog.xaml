@@ -23,7 +23,9 @@
             <TextBox x:Name="packName" Width="auto" Text="{Binding ConfigurationViewModel.Name}"/>
 
             <Label Content="Difficulty:"/>
-            <ComboBox x:Name="difficulty" SelectedIndex="1">
+            
+            <ComboBox x:Name="difficulty"
+                      SelectedItem="{Binding ConfigurationViewModel.Difficulty}">
                 <ComboBoxItem Content="Easy"/>
                 <ComboBoxItem Content="Medium" />
                 <ComboBoxItem Content="Hard"/>

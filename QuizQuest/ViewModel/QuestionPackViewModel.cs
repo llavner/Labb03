@@ -26,7 +26,7 @@ namespace QuizQuest.ViewModel
             }
 
         }
-        public Difficulty Difficulty
+        public int Difficulty //make it an int and choose the Selected index in xaml
         {
             get => _model.Difficulty;
             set

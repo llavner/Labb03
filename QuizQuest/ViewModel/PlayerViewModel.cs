@@ -13,6 +13,7 @@ namespace QuizQuest.ViewModel
     {
 
         private readonly MainWindowViewModel? mainWindowViewModel;
+        private readonly PlayerView? playerView;
         private DispatcherTimer timer;
         private string _activeQuestion;
         private string _answer1;
@@ -118,6 +119,19 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
+
+        private bool _isCorrect;
+
+        public bool IsCorrect
+        {
+            get { return _isCorrect; }
+            set 
+            {
+                _isCorrect = value;
+                RaisedPropertyChanged();
+            }
+        }
+
         public DelegateCommand ClickCommand { get; }
         public DelegateCommand RetryQuizCommand { get; }
         public PlayerViewModel(MainWindowViewModel mainWindowViewModel)
@@ -129,19 +143,25 @@ namespace QuizQuest.ViewModel
             ClickCommand = new DelegateCommand(Click);
             RetryQuizCommand = new DelegateCommand(RetryQuiz);
 
+            playerView = new PlayerView();
+
         }
 
-        private async void Click(object obj)
+        private void Click(object obj)
         {
 
             if (obj == mainWindowViewModel.ActivePack.Questions[CurrentIndex].CorrectAnswer)
             {
                 PlayerScore++;
+                playerView.AnswerCheck(IsCorrect = true);
+                
 
+                
             }
             else
             {
-
+                
+                playerView.AnswerCheck(IsCorrect = false);
             }
 
             if (CurrentIndex == QuestionsInPack - 1)
@@ -156,8 +176,8 @@ namespace QuizQuest.ViewModel
                 NextQuestion();
             }
 
-            await Task.Delay(1000);
-            //Thread.Sleep(1000);
+            //await Task.Delay(2000);
+            Thread.Sleep(1000);
 
         }
 
@@ -237,7 +257,7 @@ namespace QuizQuest.ViewModel
 
         private void GameOver()
         {
-            mainWindowViewModel.MenuVisibility = Visibility.Hidden;
+            //mainWindowViewModel.MenuVisibility = Visibility.Hidden;
             mainWindowViewModel.PlayVisibility = Visibility.Collapsed;
             mainWindowViewModel.EditVisibility = Visibility.Collapsed;
             mainWindowViewModel.GameOverVisibility = Visibility.Visible;

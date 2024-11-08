@@ -22,7 +22,7 @@
             </ComboBox>
 
             <Label Content="Difficulty:"/>
-            <ComboBox Text="Easy">
+            <ComboBox>
                 <ComboBoxItem Content="Easy"/>
                 <ComboBoxItem Content="Medium"/>
                 <ComboBoxItem Content="Hard"/>

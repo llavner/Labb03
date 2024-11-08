@@ -1,6 +1,7 @@
 ﻿using QuizQuest.Assets.Command;
 using QuizQuest.Dialogs;
 using QuizQuest.Model;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
 
@@ -14,6 +15,9 @@ namespace QuizQuest.ViewModel
         public QuestionPackViewModel? ActivePack => mainWindowViewModel?.ActivePack;
 
         private Question? _activeQuestion;
+        private string newName;
+        private int newDifficulty;
+
         public Question ActiveQuestion
         {
             get { return _activeQuestion; }
@@ -25,9 +29,11 @@ namespace QuizQuest.ViewModel
             }
         }
 
-        public string Name { get; set; }
-        public Difficulty Difficulty { get; set; }
-        public int TimeLimit { get; set; }
+        public string NewName { get => newName; set => newName = value; }
+        public int NewDifficulty { get => newDifficulty; set => newDifficulty = value; }
+        public int NewTimeLimit { get; set; }
+
+        //public ObservableCollection<QuestionPackViewModel> hejsan = new ObservableCollection<QuestionPackViewModel>(); 
 
 
         public DelegateCommand? PackDialogCommand { get; }
@@ -56,8 +62,8 @@ namespace QuizQuest.ViewModel
             QuestionDeleteCommand = new DelegateCommand(QuestionDelete, QuestionCanDelete);
             SelectPackCommand = new DelegateCommand(SelectPack, CanSelectPack);
             PackUpdateCommand = new DelegateCommand(UpdatePack);
-            
 
+            //ActivePack.Name = hejsan[0].Name;
 
         }
 
@@ -71,9 +77,11 @@ namespace QuizQuest.ViewModel
 
         private void UpdatePack(object obj)
         {
-            Name = mainWindowViewModel.ActivePack.Name;
-            TimeLimit = mainWindowViewModel.ActivePack.TimeLimit;
-            Difficulty = mainWindowViewModel.ActivePack.Difficulty;
+
+
+            ActivePack.Name = mainWindowViewModel.ActivePack.Name;
+            ActivePack.TimeLimit = mainWindowViewModel.ActivePack.TimeLimit;
+            ActivePack.Difficulty = mainWindowViewModel.ActivePack.Difficulty;
             PackUpdateCommand.RaisedCanExecuteChanged();
 
             if (obj is Window window)
@@ -87,7 +95,7 @@ namespace QuizQuest.ViewModel
         }
         private void PackAddButton(object obj)
         {
-            var newPack = new QuestionPackViewModel(new QuestionPack(Name, Difficulty, TimeLimit));
+            var newPack = new QuestionPackViewModel(new QuestionPack(NewName, NewDifficulty, NewTimeLimit));
 
             mainWindowViewModel.Packs.Add(newPack);
             mainWindowViewModel.ActivePack = newPack;
@@ -141,6 +149,7 @@ namespace QuizQuest.ViewModel
         private bool PackCanDelete(object obj) => mainWindowViewModel?.Packs?.Count != 0;
         private void QuestionAdd(object obj)
         {
+            
             if (mainWindowViewModel.Packs.Count > 0)
             {
 

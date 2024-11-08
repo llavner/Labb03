@@ -1,19 +1,6 @@
-﻿using QuizQuest.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Diagnostics;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace QuizQuest.Views
 {
     /// <summary>
@@ -26,8 +13,22 @@ namespace QuizQuest.Views
             InitializeComponent();
 
             
+            
         }
 
         
+        public void AnswerCheck(bool value)
+        {
+            if(value)
+            {
+                Button1.Background = new SolidColorBrush(Colors.PaleVioletRed);
+                
+                Debug.WriteLine("Is correct, color green");
+            }
+            else
+            {
+                Debug.WriteLine("Is false, color red");
+            }
+        }
     }
 }
