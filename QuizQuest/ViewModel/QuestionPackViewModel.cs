@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 using System.Windows;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
@@ -12,10 +13,11 @@ namespace QuizQuest.ViewModel
 {
     internal class QuestionPackViewModel : ViewModelBase
     {
+        [JsonIgnore]
         private readonly QuestionPack _model;
 
         public event NotifyCollectionChangedEventHandler? CollectionChanged;
-        public ObservableCollection<Question>? Questions { get; }
+        public ObservableCollection<Question>? Questions { get; set; }
         public string Name
         {
             get => _model.Name;
@@ -26,7 +28,7 @@ namespace QuizQuest.ViewModel
             }
 
         }
-        public int Difficulty //make it an int and choose the Selected index in xaml
+        public int Difficulty 
         {
             get => _model.Difficulty;
             set
@@ -55,6 +57,11 @@ namespace QuizQuest.ViewModel
 
         }
 
+        public QuestionPackViewModel()
+        {
+            
+
+        }
     }
 
 }

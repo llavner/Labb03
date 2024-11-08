@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 namespace QuizQuest.Model
 {
 
-    //enum Difficulty { Easy, Medium, Hard }
-
-    internal class QuestionPack
+   internal class QuestionPack
     {
 
         public string Name { get; set; }

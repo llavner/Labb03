@@ -20,12 +20,12 @@
 
             <Label Content="New pack" FontSize="20" HorizontalAlignment="Center"/>
             <Label Content="Pack Name:"/>
-            <TextBox x:Name="packName" Width="auto" Text="{Binding ConfigurationViewModel.Name}"/>
+            <TextBox x:Name="packName" Width="auto" Text="{Binding ConfigurationViewModel.NewName}"/>
 
             <Label Content="Difficulty:"/>
             
             <ComboBox x:Name="difficulty"
-                      SelectedItem="{Binding ConfigurationViewModel.Difficulty}">
+                      SelectedIndex="{Binding ConfigurationViewModel.NewDifficulty}">
                 <ComboBoxItem Content="Easy"/>
                 <ComboBoxItem Content="Medium" />
                 <ComboBoxItem Content="Hard"/>
@@ -41,7 +41,7 @@
             <Slider x:Name="dialogSlider" Maximum="120"
                     TickPlacement="BottomRight" TickFrequency="5"
                     SnapsToDevicePixels="True" IsSnapToTickEnabled="True"
-                    Value="{Binding ConfigurationViewModel.TimeLimit}"/>
+                    Value="{Binding ConfigurationViewModel.NewTimeLimit}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" 

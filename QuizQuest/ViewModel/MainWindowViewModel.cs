@@ -1,7 +1,8 @@
 ﻿using QuizQuest.Model;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
-using System.Windows.Forms;
 
 namespace QuizQuest.ViewModel
 {
@@ -67,30 +68,35 @@ namespace QuizQuest.ViewModel
             }
         }
 
+        
         public MainWindowViewModel()
         {
             Packs = new ObservableCollection<QuestionPackViewModel>();
 
-            var newCarPack = new QuestionPackViewModel(new QuestionPack("Car Pack"));
-            var newMoviePack = new QuestionPackViewModel(new QuestionPack("Movie Pack"));
+            Load("assets/json/data.json");
 
 
-            Packs.Add(newCarPack);
-            Packs.Add(newMoviePack);
-
-            //ActivePack = newCarPack;
-            ActivePack = newMoviePack;
-
-            newCarPack.Questions.Add(new Question("What car is a German car?", "BMW", "Saab", "Dodge", "Volvo"));
-            newCarPack.Questions.Add(new Question("What car is a Porsche?", "Carrera", "Viper", "Countach", "MC20"));
+            var defaultPack = new QuestionPackViewModel(new QuestionPack("Default Pack"));
+            
+            Packs.Add(defaultPack);
+            
+            ActivePack = defaultPack;
 
 
-            newMoviePack.Questions.Add(new Question("Who is the main female star in The Bodyguard?", "Whitney Houston", "Reese Witherspoon", "Salma Hayak", "Goldie Hawn"));
-            newMoviePack.Questions.Add(new Question("How much did Waterworld cost to make? (in millions)", "175", "75", "210", "110"));
+
+
+            
+
+            defaultPack.Questions.Add(new Question("What car is a German car?", "BMW", "Saab", "Dodge", "Volvo"));
+            defaultPack.Questions.Add(new Question("How much did Waterworld cost to make? (in millions)", "175", "75", "210", "110"));
+            defaultPack.Questions.Add(new Question("What car is a Porsche?", "Carrera", "Viper", "Countach", "MC20"));
+            defaultPack.Questions.Add(new Question("Who is the main female star in The Bodyguard?", "Whitney Houston", "Reese Witherspoon", "Salma Hayak", "Goldie Hawn"));
+
+
 
             if (Packs.Count == 0)
             {
-                var defaultPack = new QuestionPackViewModel(new QuestionPack("Default Pack"));
+                var newPack = new QuestionPackViewModel(new QuestionPack("Default Pack"));
                 Packs.Add(defaultPack);
                 ActivePack = defaultPack;
                 
@@ -100,15 +106,40 @@ namespace QuizQuest.ViewModel
                 ActivePack = Packs.FirstOrDefault();
             }
 
-
-
             ConfigurationViewModel = new ConfigurationViewModel(this);
             ImportQuestionViewModel = new ImportQuestionViewModel(this);
             MenubarViewModel = new MenubarViewModel(this);
             PlayerViewModel = new PlayerViewModel(this);
+            
 
 
+        }
 
+        public async Task Load(string filePath)
+        {
+
+            if (File.Exists(filePath))
+            {
+                var options = new JsonSerializerOptions() { IgnoreReadOnlyFields = true, IgnoreReadOnlyProperties = true, WriteIndented = true};
+
+                string jsonString = File.ReadAllText(filePath);
+                var loadPacks = JsonSerializer.Deserialize<ObservableCollection<QuestionPackViewModel>>(jsonString);
+                Packs = loadPacks;
+            }
+
+        }
+
+        public async Task Save(string filePath)
+        {
+
+            if (Packs != null)
+            {
+                var options = new JsonSerializerOptions() { WriteIndented = true };
+
+                string jsonString = JsonSerializer.Serialize(Packs, options);
+                File.WriteAllText("data.json", jsonString);
+
+            }
 
         }
 

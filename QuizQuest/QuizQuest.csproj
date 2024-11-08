@@ -22,6 +22,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Assets\JSON\data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Assets\Pictures\correct.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

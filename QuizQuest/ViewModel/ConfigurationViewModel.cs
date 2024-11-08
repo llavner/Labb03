@@ -17,6 +17,7 @@ namespace QuizQuest.ViewModel
         private Question? _activeQuestion;
         private string newName;
         private int newDifficulty;
+        private int newTimeLimit;
 
         public Question ActiveQuestion
         {
@@ -31,9 +32,9 @@ namespace QuizQuest.ViewModel
 
         public string NewName { get => newName; set => newName = value; }
         public int NewDifficulty { get => newDifficulty; set => newDifficulty = value; }
-        public int NewTimeLimit { get; set; }
+        public int NewTimeLimit { get => newTimeLimit; set => newTimeLimit = value; }
 
-        //public ObservableCollection<QuestionPackViewModel> hejsan = new ObservableCollection<QuestionPackViewModel>(); 
+
 
 
         public DelegateCommand? PackDialogCommand { get; }
@@ -63,7 +64,7 @@ namespace QuizQuest.ViewModel
             SelectPackCommand = new DelegateCommand(SelectPack, CanSelectPack);
             PackUpdateCommand = new DelegateCommand(UpdatePack);
 
-            //ActivePack.Name = hejsan[0].Name;
+            
 
         }
 

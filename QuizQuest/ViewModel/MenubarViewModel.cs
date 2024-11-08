@@ -33,7 +33,7 @@ namespace QuizQuest.ViewModel
         {
             mainWindowViewModel.PlayerViewModel.ResetTimer();
 
-            //mainWindowViewModel.MenuVisibility = Visibility.Visible;
+            
             mainWindowViewModel.EditVisibility = Visibility.Visible;
             mainWindowViewModel.PlayVisibility = Visibility.Collapsed;
             mainWindowViewModel.GameOverVisibility = Visibility.Collapsed;
@@ -43,14 +43,19 @@ namespace QuizQuest.ViewModel
 
         private void Play(object obj)
         {
-            if (mainWindowViewModel.ActivePack.Questions.Count == 0)
+            if (mainWindowViewModel.ActivePack == null)
             {
                 MessageBox.Show("No questions in pack", "Attention!", MessageBoxButton.OK);
                 return;
             }
+            else if(mainWindowViewModel.Packs.Count == 0)
+            {
+                MessageBox.Show("No pack available.", "Attention!", MessageBoxButton.OK);
+                return;
+
+            }
             
             mainWindowViewModel.PlayVisibility = Visibility.Visible;
-            //mainWindowViewModel.MenuVisibility = Visibility.Hidden;
             mainWindowViewModel.EditVisibility = Visibility.Collapsed;
             mainWindowViewModel.GameOverVisibility = Visibility.Collapsed;
             ShowPlayCommand.RaisedCanExecuteChanged();
@@ -61,12 +66,16 @@ namespace QuizQuest.ViewModel
 
         }
 
-        private void ExitProgram(object obj) //Lägg till Save to file?
+        private void ExitProgram(object obj) 
         {
             var result = MessageBox.Show("Are you sure you want to Exit?", "Exit Program", MessageBoxButton.YesNo);
 
             if (result == MessageBoxResult.Yes)
+            {
+                mainWindowViewModel.Save("assets/json/data.json");
+
                 Application.Current.Shutdown();
+            }
 
         }
         private void GoFullScreen(object obj)

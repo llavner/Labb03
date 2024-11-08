@@ -257,13 +257,14 @@ namespace QuizQuest.ViewModel
 
         private void GameOver()
         {
-            //mainWindowViewModel.MenuVisibility = Visibility.Hidden;
+            
             mainWindowViewModel.PlayVisibility = Visibility.Collapsed;
             mainWindowViewModel.EditVisibility = Visibility.Collapsed;
             mainWindowViewModel.GameOverVisibility = Visibility.Visible;
 
             ResetTimer();
 
+            
 
 
         }
