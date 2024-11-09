@@ -101,6 +101,8 @@ namespace QuizQuest.ViewModel
             mainWindowViewModel.Packs.Add(newPack);
             mainWindowViewModel.ActivePack = newPack;
 
+            mainWindowViewModel.Save("assets/json/data.json");
+
             PackAddButtonCommand.RaisedCanExecuteChanged();
             PackDeleteCommand.RaisedCanExecuteChanged();
 
@@ -156,6 +158,7 @@ namespace QuizQuest.ViewModel
 
                 ActivePack?.Questions.Add(new Question("New Question", "", "", "", ""));
                 ActiveQuestion = ActivePack.Questions.Last();
+                mainWindowViewModel.Save("assets/json/data.json");
 
             }
             else

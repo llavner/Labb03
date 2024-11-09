@@ -14,7 +14,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -93,13 +93,5 @@
         </WrapPanel>
 
         
-        <StackPanel Grid.Row="3" Grid.Column="0" Margin="10">
-            <Label x:Name="packName" Content="{Binding ActivePack.Name}" FontSize="12"
-                   VerticalAlignment="Center" HorizontalAlignment="Left"/>
-
-            <Label x:Name="difficulty" Content="{Binding ActivePack.Difficulty}" FontSize="12"
-                   VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        </StackPanel>
-
     </Grid>
 </UserControl>

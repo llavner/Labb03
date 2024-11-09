@@ -12,23 +12,27 @@ namespace QuizQuest.Views
         {
             InitializeComponent();
 
-            
-            
+            Button1.Background = new SolidColorBrush(Colors.PaleVioletRed);
+            Button2.Background = new SolidColorBrush(Colors.LightGreen);
+
         }
 
-        
+
         public void AnswerCheck(bool value)
         {
-            if(value)
+
+            if (value)
             {
-                Button1.Background = new SolidColorBrush(Colors.PaleVioletRed);
-                
+                Button1.Background = new SolidColorBrush(Colors.LightSlateGray);
+
                 Debug.WriteLine("Is correct, color green");
             }
             else
             {
+                Button1.Background = new SolidColorBrush(Colors.PaleVioletRed);
                 Debug.WriteLine("Is false, color red");
             }
         }
     }
 }
+

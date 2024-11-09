@@ -1,5 +1,6 @@
 ﻿using QuizQuest.Model;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Text.Json;
 using System.Windows;
@@ -75,7 +76,6 @@ namespace QuizQuest.ViewModel
 
             Load("assets/json/data.json");
 
-
             var defaultPack = new QuestionPackViewModel(new QuestionPack("Default Pack"));
             
             Packs.Add(defaultPack);
@@ -117,21 +117,30 @@ namespace QuizQuest.ViewModel
 
         public async Task Load(string filePath)
         {
-
+            Debug.WriteLine("Load from file!");
             if (File.Exists(filePath))
             {
-                var options = new JsonSerializerOptions() { IgnoreReadOnlyFields = true, IgnoreReadOnlyProperties = true, WriteIndented = true};
+                var options = new JsonSerializerOptions() 
+                { 
+                    IgnoreReadOnlyFields = true, 
+                    IgnoreReadOnlyProperties = true, 
+                    WriteIndented = true
+                };
 
                 string jsonString = File.ReadAllText(filePath);
                 var loadPacks = JsonSerializer.Deserialize<ObservableCollection<QuestionPackViewModel>>(jsonString);
                 Packs = loadPacks;
+            }
+            else
+            {
+                Save("assets/json/data.json");
             }
 
         }
 
         public async Task Save(string filePath)
         {
-
+            Debug.WriteLine("Save to file!");
             if (Packs != null)
             {
                 var options = new JsonSerializerOptions() { WriteIndented = true };
