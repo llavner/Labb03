@@ -23,7 +23,9 @@ namespace QuizQuest.Model
             Questions = new List<Question>();
         }
 
-
-
+        public QuestionPack()
+        {
+            
+        }
     }
 }

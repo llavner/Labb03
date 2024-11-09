@@ -1,10 +1,8 @@
 ﻿using QuizQuest.Assets.Command;
-using QuizQuest.Model;
 using QuizQuest.Views;
 using System.Diagnostics;
-using System.Timers;
 using System.Windows;
-using System.Windows.Forms;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace QuizQuest.ViewModel
@@ -25,6 +23,11 @@ namespace QuizQuest.ViewModel
         private int _timeLimit;
         private int counterStartIndex;
         private int _playerScore = 0;
+        private bool _isCorrect;
+        private Brush button1BackgroundColor = Brushes.Transparent;
+        private Brush button2BackgroundColor = Brushes.Transparent;
+        private Brush button3BackgroundColor = Brushes.Transparent;
+        private Brush button4BackgroundColor = Brushes.Transparent;
 
         private List<string> Answers = new List<string>();
 
@@ -120,18 +123,6 @@ namespace QuizQuest.ViewModel
             }
         }
 
-        private bool _isCorrect;
-
-        public bool IsCorrect
-        {
-            get { return _isCorrect; }
-            set 
-            {
-                _isCorrect = value;
-                RaisedPropertyChanged();
-            }
-        }
-
         public DelegateCommand ClickCommand { get; }
         public DelegateCommand RetryQuizCommand { get; }
         public PlayerViewModel(MainWindowViewModel mainWindowViewModel)
@@ -147,19 +138,99 @@ namespace QuizQuest.ViewModel
 
         }
 
-        private void Click(object obj)
+        public Brush Button1BackgroundColor
+        {
+            get => button1BackgroundColor;
+            set
+            {
+                button1BackgroundColor = value;
+                RaisedPropertyChanged();
+            }
+        }
+        public Brush Button2BackgroundColor { get => button2BackgroundColor; set => button2BackgroundColor = value; }
+        public Brush Button3BackgroundColor { get => button3BackgroundColor; set => button3BackgroundColor = value; }
+        public Brush Button4BackgroundColor { get => button4BackgroundColor; set => button4BackgroundColor = value; }
+
+        public void ResetButtonColors()
         {
 
-            if (obj == mainWindowViewModel.ActivePack.Questions[CurrentIndex].CorrectAnswer)
+            Button1BackgroundColor = Brushes.Transparent;
+            Button2BackgroundColor = Brushes.Transparent;
+            Button3BackgroundColor = Brushes.Transparent;
+            Button4BackgroundColor = Brushes.Transparent;
+
+            RaisedPropertyChanged(nameof(Button1BackgroundColor));
+            RaisedPropertyChanged(nameof(Button2BackgroundColor));
+            RaisedPropertyChanged(nameof(Button3BackgroundColor));
+            RaisedPropertyChanged(nameof(Button4BackgroundColor));
+
+        }
+        public void ButtonPropertyChanged()
+        {
+            RaisedPropertyChanged(nameof(Button1BackgroundColor));
+            RaisedPropertyChanged(nameof(Button2BackgroundColor));
+            RaisedPropertyChanged(nameof(Button3BackgroundColor));
+            RaisedPropertyChanged(nameof(Button4BackgroundColor));
+
+        }
+        public void SetButtonColor(string answer, Brush color)
+        {
+            if (answer == Answer1)
+            {
+                Button1BackgroundColor = color;
+            }
+            else if (answer == Answer2)
+            {
+                Button2BackgroundColor = color;
+            }
+            else if (answer == Answer3)
+            {
+                Button3BackgroundColor = color;
+            }
+            else if (answer == Answer4)
+            {
+                Button4BackgroundColor = color;
+            }
+
+
+        }
+
+        private async Task ShowAnswer(string selected, string correct)
+        {
+            await Task.Run(()=> CheckAnswer(selected, correct));
+
+        }
+
+        private void CheckAnswer(string selected, string correct)
+        {
+
+            if (selected == correct)
             {
                 PlayerScore++;
-                playerView.AnswerCheck(IsCorrect = true);
+                SetButtonColor(selected, Brushes.LightGreen);
+                ButtonPropertyChanged();
                 
+
             }
             else
             {
-                playerView.AnswerCheck(IsCorrect = false);
+                SetButtonColor(selected, Brushes.Red);
+                SetButtonColor(correct, Brushes.Goldenrod);
+                ButtonPropertyChanged();
+                
+
             }
+        }
+        private async void Click(object obj)
+        {
+
+            string? correctAnswer = mainWindowViewModel.ActivePack.Questions[CurrentIndex].CorrectAnswer;
+            string? selectedAnswer = obj.ToString();
+
+            await ShowAnswer(selectedAnswer, correctAnswer);
+
+            await Task.Delay(1000);
+
 
             if (CurrentIndex == QuestionsInPack - 1)
             {
@@ -173,8 +244,8 @@ namespace QuizQuest.ViewModel
                 NextQuestion();
             }
 
-            //await Task.Delay(2000);
-            Thread.Sleep(1000);
+            ResetButtonColors();
+
 
         }
 
@@ -206,8 +277,6 @@ namespace QuizQuest.ViewModel
             Answers.Add(mainWindowViewModel.ActivePack.Questions[CurrentIndex].IncorrectAnswers[0]);
             Answers.Add(mainWindowViewModel.ActivePack.Questions[CurrentIndex].IncorrectAnswers[1]);
             Answers.Add(mainWindowViewModel.ActivePack.Questions[CurrentIndex].IncorrectAnswers[2]);
-
-
 
             NextQuestion();
         }
@@ -259,14 +328,8 @@ namespace QuizQuest.ViewModel
             mainWindowViewModel.GameOverVisibility = Visibility.Visible;
 
             ResetTimer();
-
             
-
-
         }
-
-
-
 
         private void Timer()
         {

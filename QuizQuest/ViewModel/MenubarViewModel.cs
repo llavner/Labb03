@@ -72,7 +72,7 @@ namespace QuizQuest.ViewModel
 
             if (result == MessageBoxResult.Yes)
             {
-                mainWindowViewModel.Save("assets/json/data.json");
+                mainWindowViewModel.Save();
 
                 Application.Current.Shutdown();
             }

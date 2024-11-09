@@ -16,8 +16,12 @@ namespace QuizQuest.ViewModel
         [JsonIgnore]
         private readonly QuestionPack _model;
 
-        public event NotifyCollectionChangedEventHandler? CollectionChanged;
+        //public event NotifyCollectionChangedEventHandler? CollectionChanged;
+
+        [JsonPropertyName("Questions")]
         public ObservableCollection<Question>? Questions { get; set; }
+
+        [JsonPropertyName("Name")]
         public string Name
         {
             get => _model.Name;
@@ -28,6 +32,7 @@ namespace QuizQuest.ViewModel
             }
 
         }
+        [JsonPropertyName("Difficulty")]
         public int Difficulty 
         {
             get => _model.Difficulty;
@@ -38,6 +43,7 @@ namespace QuizQuest.ViewModel
             }
 
         }
+        [JsonPropertyName("TimeLimit")]
         public int TimeLimit
         {
             get => _model.TimeLimit;
@@ -59,6 +65,8 @@ namespace QuizQuest.ViewModel
 
         public QuestionPackViewModel()
         {
+            this._model = new QuestionPack();
+            this.Questions = new ObservableCollection<Question>();
             
 
         }

@@ -8,20 +8,20 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" d:Background="AliceBlue">
 
-   
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
 
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Label x:Name="counter" Content="{Binding PlayerViewModel.TimeLimit}" Margin="10" FontSize="30"
@@ -32,13 +32,13 @@
                     HorizontalAlignment="Center">
 
             <TextBlock Text="{Binding PlayerViewModel.ActiveQuestion, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
-                       FontSize="20"/>
+                       FontSize="20" TextWrapping="Wrap"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
 
                 <TextBlock d:Text="Question 1 " Text="{Binding PlayerViewModel.CounterStartIndex, StringFormat=Question {0}}"/>
                 <TextBlock d:Text="of 2" Margin="2,0"  Text="{Binding PlayerViewModel.QuestionsInPack, StringFormat= of {0}}"/>
-                
+
             </StackPanel>
 
         </StackPanel>
@@ -51,47 +51,85 @@
                     <Setter Property="Width" Value="150"/>
                     <Setter Property="Height" Value="60"/>
                     <Setter Property="Margin" Value="5"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                    
                 </Style>
             </WrapPanel.Resources>
 
-            <StackPanel>
+            <WrapPanel>
 
 
                 <Button x:Name="Button1" Margin="5"
                         Command="{Binding PlayerViewModel.ClickCommand}"
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
-                        Content="{Binding PlayerViewModel.Answer1, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                        Content="{Binding PlayerViewModel.Answer1, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                        BorderBrush="{Binding PlayerViewModel.Button1BackgroundColor}"/>
 
-                    
-                </Button>
-                
                 <Button x:Name="Button2" Margin="5"
                         Command="{Binding PlayerViewModel.ClickCommand}"
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
-                        Content="{Binding PlayerViewModel.Answer2, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-                </Button>
-                
-            </StackPanel>
-            
-            <StackPanel>
+                        Content="{Binding PlayerViewModel.Answer2, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                        BorderBrush="{Binding PlayerViewModel.Button2BackgroundColor, UpdateSourceTrigger=PropertyChanged}"/>
+
+
                 <Button x:Name="Button3" Margin="5"
                         Command="{Binding PlayerViewModel.ClickCommand}"
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
-                        Content="{Binding PlayerViewModel.Answer3, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
+                        Content="{Binding PlayerViewModel.Answer3, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                        BorderBrush="{Binding PlayerViewModel.Button3BackgroundColor, UpdateSourceTrigger=PropertyChanged}"/>
 
-                </Button>
+
 
                 <Button x:Name="Button4" Margin="5"
                         Command="{Binding PlayerViewModel.ClickCommand}"
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
-                        Content="{Binding PlayerViewModel.Answer4, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}">
-                
-                </Button>
-                
-            </StackPanel>
+                        Content="{Binding PlayerViewModel.Answer4, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                        BorderBrush="{Binding PlayerViewModel.Button4BackgroundColor, UpdateSourceTrigger=PropertyChanged}"/>
+
+
+
+            </WrapPanel>
 
         </WrapPanel>
 
-        
+        <WrapPanel x:Name="ShowWrong" Grid.Row="2" Grid.Column="1"  Orientation="Horizontal"
+            VerticalAlignment="Center" HorizontalAlignment="Center">
+            <WrapPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="150"/>
+                    <Setter Property="Height" Value="60"/>
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="BorderBrush" Value="PaleVioletRed"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                </Style>
+            </WrapPanel.Resources>
+            <WrapPanel Orientation="Horizontal">
+                <Button x:Name="btn1Wrong" Content="{Binding PlayerViewModel.Answer1}" Visibility="Hidden"></Button>
+                <Button x:Name="btn2Wrong" Content="{Binding PlayerViewModel.Answer2}" Visibility="Hidden"></Button>
+                <Button x:Name="btn3Wrong" Content="{Binding PlayerViewModel.Answer3}" Visibility="Hidden"></Button>
+                <Button x:Name="btn4Wrong" Content="{Binding PlayerViewModel.Answer4}" Visibility="Hidden"></Button>
+            </WrapPanel>
+        </WrapPanel>
+
+        <WrapPanel x:Name="ShowRight" Grid.Row="2" Grid.Column="1"  Orientation="Horizontal"
+                   VerticalAlignment="Center" HorizontalAlignment="Center">
+            <WrapPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="150"/>
+                    <Setter Property="Height" Value="60"/>
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="BorderBrush" Value="LightGreen"/>
+                    <Setter Property="BorderThickness" Value="5"/>
+                </Style>
+            </WrapPanel.Resources>
+            <WrapPanel Orientation="Horizontal">
+                <Button x:Name="btn1Right" Content="{Binding PlayerViewModel.Answer1}" Visibility="Hidden"></Button>
+                <Button x:Name="btn2Right" Content="{Binding PlayerViewModel.Answer2}" Visibility="Hidden"></Button>
+                <Button x:Name="btn3Right" Content="{Binding PlayerViewModel.Answer3}" Visibility="Hidden"></Button>
+                <Button x:Name="btn4Right" Content="{Binding PlayerViewModel.Answer4}" Visibility="Hidden"></Button>
+            </WrapPanel>
+        </WrapPanel>
+
+
     </Grid>
 </UserControl>
