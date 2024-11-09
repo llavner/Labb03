@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace QuizQuest.ViewModel
 {
+    //Not Implemented yet.
+    //ToDo Import questions from API trevia.
     class ImportQuestionViewModel : ViewModelBase
     {
         private readonly MainWindowViewModel? mainWindowViewModel;

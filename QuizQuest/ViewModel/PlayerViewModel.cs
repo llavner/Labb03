@@ -122,6 +122,10 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
+        public Brush Button1BackgroundColor { get => button1BackgroundColor; set => button1BackgroundColor = value; }
+        public Brush Button2BackgroundColor { get => button2BackgroundColor; set => button2BackgroundColor = value; }
+        public Brush Button3BackgroundColor { get => button3BackgroundColor; set => button3BackgroundColor = value; }
+        public Brush Button4BackgroundColor { get => button4BackgroundColor; set => button4BackgroundColor = value; }
 
         public DelegateCommand ClickCommand { get; }
         public DelegateCommand RetryQuizCommand { get; }
@@ -137,20 +141,6 @@ namespace QuizQuest.ViewModel
             playerView = new PlayerView();
 
         }
-
-        public Brush Button1BackgroundColor
-        {
-            get => button1BackgroundColor;
-            set
-            {
-                button1BackgroundColor = value;
-                RaisedPropertyChanged();
-            }
-        }
-        public Brush Button2BackgroundColor { get => button2BackgroundColor; set => button2BackgroundColor = value; }
-        public Brush Button3BackgroundColor { get => button3BackgroundColor; set => button3BackgroundColor = value; }
-        public Brush Button4BackgroundColor { get => button4BackgroundColor; set => button4BackgroundColor = value; }
-
         public void ResetButtonColors()
         {
 
@@ -215,7 +205,7 @@ namespace QuizQuest.ViewModel
             else
             {
                 SetButtonColor(selected, Brushes.Red);
-                SetButtonColor(correct, Brushes.Goldenrod);
+                SetButtonColor(correct, Brushes.Green);
                 ButtonPropertyChanged();
                 
 

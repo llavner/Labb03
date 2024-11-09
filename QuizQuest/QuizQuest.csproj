@@ -22,9 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Assets\Pictures\correct.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Update="Assets\Pictures\qq.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

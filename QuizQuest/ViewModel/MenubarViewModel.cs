@@ -40,7 +40,6 @@ namespace QuizQuest.ViewModel
             ShowEditCommand.RaisedCanExecuteChanged();
             ShowPlayCommand.RaisedCanExecuteChanged();
         }
-
         private void Play(object obj)
         {
             if (mainWindowViewModel.ActivePack == null)
@@ -65,7 +64,6 @@ namespace QuizQuest.ViewModel
             mainWindowViewModel.PlayerViewModel.StartQuiz();
 
         }
-
         private void ExitProgram(object obj) 
         {
             var result = MessageBox.Show("Are you sure you want to Exit?", "Exit Program", MessageBoxButton.YesNo);

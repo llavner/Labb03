@@ -16,8 +16,6 @@ namespace QuizQuest.ViewModel
         [JsonIgnore]
         private readonly QuestionPack _model;
 
-        //public event NotifyCollectionChangedEventHandler? CollectionChanged;
-
         [JsonPropertyName("Questions")]
         public ObservableCollection<Question>? Questions { get; set; }
 

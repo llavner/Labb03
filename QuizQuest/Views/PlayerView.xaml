@@ -52,7 +52,7 @@
                     <Setter Property="Height" Value="60"/>
                     <Setter Property="Margin" Value="5"/>
                     <Setter Property="BorderThickness" Value="5"/>
-                    
+
                 </Style>
             </WrapPanel.Resources>
 
@@ -85,8 +85,6 @@
                         CommandParameter="{Binding Path=Content, RelativeSource={RelativeSource Self}}"
                         Content="{Binding PlayerViewModel.Answer4, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                         BorderBrush="{Binding PlayerViewModel.Button4BackgroundColor, UpdateSourceTrigger=PropertyChanged}"/>
-
-
 
             </WrapPanel>
 

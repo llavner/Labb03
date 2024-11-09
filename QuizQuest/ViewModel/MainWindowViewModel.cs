@@ -15,7 +15,6 @@ namespace QuizQuest.ViewModel
         private Visibility _gameOverVisibility = Visibility.Collapsed;
         private Visibility _menuVisibility = Visibility.Visible;
 
-
         private QuestionPackViewModel? _activePack;
         public ObservableCollection<QuestionPackViewModel>? Packs { get; set; }
         public QuestionPackViewModel? ActivePack
@@ -43,13 +42,11 @@ namespace QuizQuest.ViewModel
                 RaisedPropertyChanged();
             }
         }
-
         public Visibility MenuVisibility
         {
             get { return _menuVisibility; }
             set { _menuVisibility = value; }
         }
-
         public Visibility EditVisibility
         {
             get { return _editVisibility; }
@@ -92,8 +89,6 @@ namespace QuizQuest.ViewModel
 
         public async Task Load()
         {
-
-
             var filePath = "data.json";
 
             if (File.Exists(filePath))

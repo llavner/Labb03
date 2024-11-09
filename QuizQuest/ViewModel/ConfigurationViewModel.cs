@@ -33,10 +33,6 @@ namespace QuizQuest.ViewModel
         public string NewName { get => newName; set => newName = value; }
         public int NewDifficulty { get => newDifficulty; set => newDifficulty = value; }
         public int NewTimeLimit { get => newTimeLimit; set => newTimeLimit = value; }
-
-
-
-
         public DelegateCommand? PackDialogCommand { get; }
         public DelegateCommand? PackDialogOptionCommand { get; }
         public DelegateCommand? PackOptionUpDateCommand { get; }
@@ -75,7 +71,6 @@ namespace QuizQuest.ViewModel
             SelectPackCommand.RaisedCanExecuteChanged();
             
         }
-
         private void UpdatePack(object obj)
         {
 
@@ -148,7 +143,6 @@ namespace QuizQuest.ViewModel
             }
 
         }
-            
         private bool PackCanDelete(object obj) => mainWindowViewModel?.Packs?.Count != 0;
         private void QuestionAdd(object obj)
         {

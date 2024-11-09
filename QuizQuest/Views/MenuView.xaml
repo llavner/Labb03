@@ -26,9 +26,9 @@
 
                 <Separator/>
 
-                <MenuItem Header="_Import Questions" Icon="{fa:Icon fileimport}"
+                <!--<MenuItem Header="_Import Questions" Icon="{fa:Icon fileimport}"
                           InputGestureText="Ctrl + I"
-                          Command="{Binding ImportQuestionViewModel.ImportDialogCommand}"/>
+                          Command="{Binding ImportQuestionViewModel.ImportDialogCommand}"/>-->
 
                 <Separator/>
 
