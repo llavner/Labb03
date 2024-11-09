@@ -155,12 +155,9 @@ namespace QuizQuest.ViewModel
                 PlayerScore++;
                 playerView.AnswerCheck(IsCorrect = true);
                 
-
-                
             }
             else
             {
-                
                 playerView.AnswerCheck(IsCorrect = false);
             }
 
@@ -196,7 +193,6 @@ namespace QuizQuest.ViewModel
             CurrentIndex = 0;
 
             mainWindowViewModel.PlayVisibility = Visibility.Visible;
-            //mainWindowViewModel.MenuVisibility = Visibility.Hidden;
             mainWindowViewModel.EditVisibility = Visibility.Collapsed;
             mainWindowViewModel.GameOverVisibility = Visibility.Collapsed;
 
